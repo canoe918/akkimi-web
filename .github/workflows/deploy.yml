@@ -28,8 +28,8 @@ jobs:
           API_TOKEN_GITHUB: ${{ secrets.REPOSITORY_TOKEN }}
         with:
           source-directory: "output"
-          destination-github-username: ["canoe918"]
-          destination-repository-name: ["akkimi-web"]
+          destination-github-username: "canoe918"
+          destination-repository-name: "akkimi-web"
           user-email: ${{ secrets.EMAIL_ACCOUNT }}
           commit-message: ${{ github.event.commits[0].message }}
           target-branch: main
