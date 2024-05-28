@@ -21,7 +21,7 @@ jobs:
       - name: Run mirror current repository
         run: sh ./build.sh
 
-      - name: Pushes to lazydore repository
+      - name: Pushes to lazydoer repository
         id: push_directory
         uses: cpina/github-action-push-to-another-repository@main
         env:
