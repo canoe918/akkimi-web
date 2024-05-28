@@ -1,0 +1,5 @@
+deploy.yml
+build.sh
+node_modules
+.next
+exclude-list.txt
