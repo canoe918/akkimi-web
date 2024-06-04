@@ -22,7 +22,7 @@ jobs:
         run: sh ./build.sh
 
       - name: echo
-        run: echo "token > $secrets.REPOSITORY_TOKEN"
+        run: echo "token > $secrets"
 
       - name: Pushes to lazydoer repository
         id: push_directory
