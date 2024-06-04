@@ -1,5 +1,7 @@
 ## Akkimi Web
 
+test
+
 - 배포
 lazodoer repo -> (clone) -> canoe918@lazydoer -> vercel (free)
 
