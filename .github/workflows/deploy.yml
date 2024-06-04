@@ -19,34 +19,41 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v4
 
-      - name: Verify secrets
+      - name: echo
         run: |
           echo "$GITHUB_ENV"
-          if [ -z "$REPOSITORY_TOKEN" ]; then
-            echo "Error: REPOSITORY_TOKEN is not set or is empty"
+
+      - name: Verify secrets
+        run: |
+          if [ -z "$EMAIL_ACCOUNT" ]; then
+            echo "Error: EMAIL_ACCOUNT is not set or is empty"
             exit 1
           else
-            echo "REPOSITORY_TOKEN is set"
+            echo "EMAIL_ACCOUNT is set"
           fi
 
-          echo "REPOSITORY_TOKEN=$REPOSITORY_TOKEN" >> $GITHUB_ENV
           echo "EMAIL_ACCOUNT=$EMAIL_ACCOUNT" >> $GITHUB_ENV
 
-      - name: Run mirror current repository
-        run: sh ./build.sh
-
-      - name: Pushes to lazydoer repository
-        id: push_directory
-        uses: cpina/github-action-push-to-another-repository@main
+      - name: Use secret
+        run: echo "Using EMAIL_ACCOUNT=$EMAIL_ACCOUNT"
         env:
-          API_TOKEN_GITHUB: ${{ secrets.REPOSITORY_TOKEN }}
-        with:
-          source-directory: "output"
-          destination-github-username: "canoe918"
-          destination-repository-name: "akkimi-web"
-          user-email: ${{ secrets.EMAIL_ACCOUNT }}
-          commit-message: ${{ github.event.commits[0].message }}
-          target-branch: main
+          EMAIL_ACCOUNT: ${{ env.EMAIL_ACCOUNT }}
 
-      - name: Test get variable exported by push-to-another-repository
-        run: echo $DESTINATION_CLONED_DIRECTORY
+      # - name: Run mirror current repository
+      #   run: sh ./build.sh
+
+      # - name: Pushes to lazydoer repository
+      #   id: push_directory
+      #   uses: cpina/github-action-push-to-another-repository@main
+      #   env:
+      #     API_TOKEN_GITHUB: ${{ secrets.REPOSITORY_TOKEN }}
+      #   with:
+      #     source-directory: "output"
+      #     destination-github-username: "canoe918"
+      #     destination-repository-name: "akkimi-web"
+      #     user-email: ${{ secrets.EMAIL_ACCOUNT }}
+      #     commit-message: ${{ github.event.commits[0].message }}
+      #     target-branch: main
+
+      # - name: Test get variable exported by push-to-another-repository
+      #   run: echo $DESTINATION_CLONED_DIRECTORY
