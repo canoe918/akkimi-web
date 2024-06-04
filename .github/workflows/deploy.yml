@@ -11,6 +11,10 @@ on:
 
 jobs:
   # This workflow contains a single job called "build"
+  job-name:
+    permissions:
+      contents: write
+
   build:
     runs-on: ubuntu-latest
 
