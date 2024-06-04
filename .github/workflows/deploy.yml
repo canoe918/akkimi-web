@@ -16,13 +16,12 @@ jobs:
 
     # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
-      - uses: actions/checkout@v4
-
-      - name: Run mirror current repository
-        run: sh ./build.sh
+      - name: Checkout code
+        uses: actions/checkout@v4
 
       - name: Verify secrets
         run: |
+          echo "$GITHUB_ENV"
           if [ -z "$REPOSITORY_TOKEN" ]; then
             echo "Error: REPOSITORY_TOKEN is not set or is empty"
             exit 1
@@ -32,6 +31,9 @@ jobs:
 
           echo "REPOSITORY_TOKEN=$REPOSITORY_TOKEN" >> $GITHUB_ENV
           echo "EMAIL_ACCOUNT=$EMAIL_ACCOUNT" >> $GITHUB_ENV
+
+      - name: Run mirror current repository
+        run: sh ./build.sh
 
       - name: Pushes to lazydoer repository
         id: push_directory
