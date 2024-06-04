@@ -23,6 +23,7 @@ jobs:
 
       - name: Pushes to lazydoer repository
         id: push_directory
+        run: echo "$REPOSITORY_TOKEN"
         uses: cpina/github-action-push-to-another-repository@main
         env:
           API_TOKEN_GITHUB: ${{ secrets.REPOSITORY_TOKEN }}
