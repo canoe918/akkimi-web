@@ -34,7 +34,7 @@ jobs:
           source-directory: "output"
           destination-github-username: "canoe918"
           destination-repository-name: "akkimi-web"
-          user-email: ${{ secrets.EMAIL_ACCOUNT }}
+          user-email: "canoe918@lazydoer.com"
           commit-message: ${{ github.event.commits[0].message }}
           target-branch: main
 
