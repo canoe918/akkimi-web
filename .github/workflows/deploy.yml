@@ -21,8 +21,17 @@ jobs:
       - name: Run mirror current repository
         run: sh ./build.sh
 
-      - name: echo
-        run: echo "token > $secrets"
+      - name: Verify secrets
+        run: |
+          if [ -z "$REPOSITORY_TOKEN" ]; then
+            echo "Error: REPOSITORY_TOKEN is not set or is empty"
+            exit 1
+          else
+            echo "REPOSITORY_TOKEN is set"
+          fi
+
+          echo "REPOSITORY_TOKEN=$REPOSITORY_TOKEN" >> $GITHUB_ENV
+          echo "EMAIL_ACCOUNT=$EMAIL_ACCOUNT" >> $GITHUB_ENV
 
       - name: Pushes to lazydoer repository
         id: push_directory
