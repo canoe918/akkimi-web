@@ -26,6 +26,17 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v4
 
+      - name: Setup Git
+        run: |
+          git config user.name canoe918
+          git config user.email canoe918@lazydoer.com
+
+      - name: Add remote and push changes
+        env:
+          API_TOKEN_GITHUB: ${{ secrets.API_TOKEN_GITHUB }}
+        run: |
+          git remote set-url origin https://${API_TOKEN_GITHUB}@github.com/canoe918/akkimi-web
+
       - name: Run mirror current repository
         run: sh ./build.sh
 
@@ -36,8 +47,8 @@ jobs:
         with:
           source-directory: "output"
           destination-github-username: "canoe918"
-          destination-repository-name: "akkimi-web-test"
-          user-email: ${{ secrets.EMAIL_ACCOUNT }}
+          destination-repository-name: "akkimi-web"
+          user-email: canoe918@lazydoer.com
           commit-message: ${{ github.event.commits[0].message }}
           target-branch: main
 
