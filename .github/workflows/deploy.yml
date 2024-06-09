@@ -2,23 +2,16 @@ name: git push into personal lazydoer repo to deploy to vercel
 
 on:
   push:
-    branches: ["main", "develop"]
-  pull_request:
-    branches: ["main", "develop"]
+    branches:
+      - main
+      - develop
 
   # Allows you to run this workflow manually from the Actions tab
   workflow_dispatch:
 
-permissions:
-  pages: write
-  contents: write
-  pull-requests: write
-  repository-projects: write
-
 jobs:
   # This workflow contains a single job called "build"
-
-  build:
+  force-push:
     runs-on: ubuntu-latest
 
     # Steps represent a sequence of tasks that will be executed as part of the job
@@ -26,31 +19,20 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v4
 
-      - name: Setup Git
+      - name: Set up Git
         run: |
-          git config user.name canoe918
-          git config user.email canoe918@lazydoer.com
+          git config --global user.name "canoe918"
+          git config --global user.email "canoe918@lazydoer.com"
 
-      - name: Add remote and push changes
+      - name: Save current remote URL
+        id: save-url
+        run: echo "::set-output name=url::$(git remote get-url origin)"
+
+      - name: Force push to develop branch
+        if: github.ref == 'refs/heads/develop'
         env:
           API_TOKEN_GITHUB: ${{ secrets.API_TOKEN_GITHUB }}
         run: |
-          git remote set-url origin https://canoe918:${API_TOKEN_GITHUB}@github.com/canoe918/akkimi-web
-
-      - name: Run mirror current repository
-        run: sh ./build.sh
-
-      - name: Pushes to lazydoer repository
-        uses: cpina/github-action-push-to-another-repository@main
-        env:
-          API_TOKEN_GITHUB: ${{ secrets.API_TOKEN_GITHUB }}
-        with:
-          source-directory: "output"
-          destination-github-username: "canoe918"
-          destination-repository-name: "akkimi-web"
-          user-email: canoe918@lazydoer.com
-          commit-message: ${{ github.event.commits[0].message }}
-          target-branch: main
-
-      - name: Test get variable exported by push-to-another-repository
-        run: echo $DESTINATION_CLONED_DIRECTORY
+          git remote set-url origin https://canoe918:${API_TOKEN_GITHUB}@github.com/canoe918/akkimi-web.git
+          git push origin HEAD:develop --force
+          git remote set-url origin ${{ steps.save-url.outputs.url }}
