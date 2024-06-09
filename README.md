@@ -1,7 +1,7 @@
 ## Akkimi Web
 
-- 배포
-lazodoer repo -> (clone) -> canoe918@lazydoer -> vercel (free)
+- 배포 (deploy)
+  lazodoer repo -> (clone) -> canoe918@lazydoer -> vercel (free)
 
 - 프로젝트 실행
 
