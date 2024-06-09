@@ -67,15 +67,6 @@ const config: Config = {
       addBase({
         html: {
           fontSize: "62.5%",
-          // https://juyeol.tistory.com/30 > ios safari 확대 이슈 방지
-          touchAction: "pan-y",
-        },
-        body: {
-          fontSize: "1.4rem",
-          color: theme("colors.d_point"),
-          fontWeight: "400",
-          lineHeight: "120%",
-          userSelect: "none",
         },
       }),
         addComponents({
@@ -140,9 +131,6 @@ const config: Config = {
           ".text_20_b": {
             fontSize: "2.0rem",
             fontWeight: "700",
-          },
-          ".break-word": {
-            wordBreak: "break-word",
           },
         });
     }),
