@@ -33,4 +33,7 @@ jobs:
         run: |
           git remote set-url origin https://canoe918:${API_TOKEN_GITHUB}@github.com/canoe918/akkimi-web.git
           git push origin HEAD:develop --force
+
+      - name: Rollback origin
+        run: |
           git remote set-url origin ${{ steps.save-url.outputs.url }}
