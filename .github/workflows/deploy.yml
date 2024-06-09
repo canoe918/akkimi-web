@@ -35,7 +35,7 @@ jobs:
         env:
           API_TOKEN_GITHUB: ${{ secrets.API_TOKEN_GITHUB }}
         run: |
-          git remote set-url origin https://${API_TOKEN_GITHUB}@github.com/canoe918/akkimi-web
+          git remote set-url origin https://canoe918:${API_TOKEN_GITHUB}@github.com/canoe918/akkimi-web
 
       - name: Run mirror current repository
         run: sh ./build.sh
