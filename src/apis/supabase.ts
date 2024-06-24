@@ -1,7 +1,5 @@
+import { SUPABASE_API_KEY, SUPABASE_URL } from "@/ilbs/env.const";
 import { createClient } from "@supabase/supabase-js";
 import { Database } from "./models/database.types";
 
-export const supabase = createClient<Database>(
-  process.env.SUPABASE_URL!,
-  process.env.SUPABASE_API_KEY!,
-);
+export const supabase = createClient<Database>(SUPABASE_URL, SUPABASE_API_KEY);

@@ -1,6 +1,25 @@
 "use client";
 
+import { NODE_ENV } from "@/ilbs/env.const";
+import { queryClient } from "@/ilbs/reactQuery/queryClient";
+import { QueryClientProvider } from "@tanstack/react-query";
+import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
 import { createContext, PropsWithChildren, RefObject, useRef } from "react";
+import { ErrorBoundary } from "react-error-boundary";
+
+export function AppProvider({ children }: PropsWithChildren) {
+  return (
+    <ErrorBoundary fallback={<div />}>
+      <QueryClientProvider client={queryClient}>
+        {NODE_ENV === "development" && (
+          <ReactQueryDevtools initialIsOpen={false} />
+        )}
+
+        {children}
+      </QueryClientProvider>
+    </ErrorBoundary>
+  );
+}
 
 export function MobileWebProvider({ children }: PropsWithChildren) {
   return (

@@ -6,6 +6,7 @@ module.exports = {
   semi: true,
   importOrder: [
     "<THIRD_PARTY_MODULES>",
+    "^@/libs/(.*)$",
     "^@/apis/(.*)$",
     "^@/app/(.*)$",
     "^@/appComponents/(.*)$",

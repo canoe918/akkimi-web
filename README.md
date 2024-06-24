@@ -29,6 +29,7 @@ yarn storybook
 BASE_API_URL=
 SUPABASE_API_KEY=
 SUPABASE_URL=
+NODE_ENV=
 ```
 
 - supabase 명령어
