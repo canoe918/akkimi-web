@@ -3,7 +3,7 @@ import Footer from "@/appComponents/Footer";
 import NavigationBar from "@/appComponents/NavigationBar";
 import Image from "next/image";
 
-export default function Home() {
+export default async function Home() {
   return (
     <>
       <main className="flex flex-col w-full h-full gap-y-40">

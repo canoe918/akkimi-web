@@ -27,4 +27,15 @@ yarn storybook
 
 ```bash
 BASE_API_URL=
+SUPABASE_API_KEY=
+SUPABASE_URL=
+```
+
+- supabase 명령어
+
+```bash
+brew install supabase/tap/supabase
+
+supabase login
+supabase gen types typescript --project-id [id] > database.types.ts
 ```
