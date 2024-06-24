@@ -70,67 +70,119 @@ const config: Config = {
         },
       }),
         addComponents({
-          ".text_10": {
-            fontSize: "1rem",
-            fontWeight: "400",
+          ".heading1-b": {
+            fontSize: "6rem",
+            fontWeight: "700",
+            lineHeight: "5.2rem",
+            letterSpacing: "-4%",
           },
-          ".text_11": {
-            fontSize: "1.1rem",
-            fontWeight: "400",
+          ".heading2-b": {
+            fontSize: "4.8rem",
+            fontWeight: "700",
+            lineHeight: "4.6rem",
+            letterSpacing: "-4%",
           },
-          ".text_12": {
-            fontSize: "1.2rem",
-            fontWeight: "400",
+          ".heading3-b": {
+            fontSize: "3.6rem",
+            fontWeight: "700",
+            lineHeight: "4.2rem",
+            letterSpacing: "-4%",
           },
-          ".text_13": {
-            fontSize: "1.3rem",
-            fontWeight: "400",
+          ".heading4-b": {
+            fontSize: "3.2rem",
+            fontWeight: "700",
+            lineHeight: "3.2rem",
+            letterSpacing: "-4%",
           },
-          ".text_14": {
-            fontSize: "1.4rem",
-            fontWeight: "400",
+          ".heading5-b": {
+            fontSize: "2.8rem",
+            fontWeight: "700",
+            lineHeight: "3.8rem",
+            letterSpacing: "-4%",
           },
-          ".text_14_b": {
+          ".heading6-b": {
+            fontSize: "2.4rem",
+            fontWeight: "700",
+            lineHeight: "3.4rem",
+            letterSpacing: "-4%",
+          },
+          ".headline-b": {
+            fontSize: "2rem",
+            fontWeight: "700",
+            lineHeight: "2.8rem",
+            letterSpacing: "-4%",
+          },
+          ".subhead3-b": {
+            fontSize: "1.8rem",
+            fontWeight: "700",
+            lineHeight: "2.2rem",
+            letterSpacing: "-4%",
+          },
+          ".subhead3-m": {
+            fontSize: "1.8rem",
+            fontWeight: "500",
+            lineHeight: "2.2rem",
+            letterSpacing: "-4%",
+          },
+          ".subhead2-b": {
+            fontSize: "1.6rem",
+            fontWeight: "700",
+            lineHeight: "2.2rem",
+            letterSpacing: "-4%",
+          },
+          ".subhead2-m": {
+            fontSize: "1.6rem",
+            fontWeight: "500",
+            lineHeight: "2.2rem",
+            letterSpacing: "-4%",
+          },
+          ".subhead1-b": {
             fontSize: "1.4rem",
             fontWeight: "700",
+            lineHeight: "2rem",
+            letterSpacing: "-4%",
           },
-          ".text_16": {
-            fontSize: "1.6rem",
-            fontWeight: "400",
+          ".subhead1-m": {
+            fontSize: "1.4rem",
+            fontWeight: "500",
+            lineHeight: "2rem",
+            letterSpacing: "-4%",
           },
-          ".text_16_b": {
-            fontSize: "1.6rem",
-            fontWeight: "700",
-          },
-          ".text_18": {
+          ".body3-r": {
             fontSize: "1.8rem",
             fontWeight: "400",
+            lineHeight: "2.4rem",
+            letterSpacing: "-4%",
           },
-          ".text_18_b": {
-            fontSize: "1.8rem",
-            fontWeight: "700",
-          },
-          ".text_22": {
-            fontSize: "2.2rem",
-            lineHeight: "120%",
+          ".body2-r": {
+            fontSize: "1.6rem",
             fontWeight: "400",
+            lineHeight: "2.4rem",
+            letterSpacing: "-4%",
           },
-          ".text_22_b": {
-            fontSize: "2.2rem",
-            lineHeight: "120%",
-            fontWeight: "700",
+          ".body1-r": {
+            fontSize: "1.4rem",
+            fontWeight: "400",
+            lineHeight: "2.0rem",
+            letterSpacing: "-4%",
           },
-          ".text_12_b": {
+          ".caption-r": {
+            fontSize: "1.2rem",
+            fontWeight: "400",
+            lineHeight: "1.8rem",
+            letterSpacing: "-4%",
+          },
+          ".caption-b": {
             fontSize: "1.2rem",
             fontWeight: "700",
+            lineHeight: "1.8rem",
+            letterSpacing: "-4%",
           },
-          ".text_15_b": {
-            fontSize: "1.5rem",
-            fontWeight: "700",
-          },
-          ".text_20_b": {
-            fontSize: "2.0rem",
-            fontWeight: "700",
+          ".caption-m": {
+            fontSize: "1.2rem",
+            fontWeight: "500",
+            lineHeight: "1.8rem",
+            letterSpacing: "-4%",
           },
         });
     }),
