@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import { Noto_Sans_KR } from "next/font/google";
 
-import { MobileWebProvider } from "@/app/core/Providers";
+import { MobileWebProvider, PortalProvider } from "@/app/core/Providers";
 
 import "./globals.css";
 
@@ -24,7 +24,9 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={notoSansKr.className}>
-        <MobileWebProvider>{children}</MobileWebProvider>
+        <PortalProvider>
+          <MobileWebProvider>{children}</MobileWebProvider>
+        </PortalProvider>
       </body>
     </html>
   );
