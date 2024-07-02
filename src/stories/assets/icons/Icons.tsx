@@ -1,7 +1,7 @@
 import classNames from "clsx";
 import { useRef } from "react";
 
-import AddIcon from "@/stories/icons/svg/add.svg";
+import AddIcon from "@/stories/assets/icons/svg/add.svg";
 import Image from "next/image";
 
 export default function Icons() {

@@ -12,9 +12,9 @@ const nextConfig = {
              *
              * 1rem 을 10px로 가져가기 때문에, 기본 아이콘 사이즈인 14px 맞추기 위해 1.4rem 으로 설정
              */
-            icon: "1.4rem",
+            icon: "2.4rem",
             replaceAttrValues: {
-              "#092C1F": "currentColor",
+              "#101828": "currentColor",
             },
           },
         },

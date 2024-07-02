@@ -2,6 +2,9 @@
 
 import { useState } from "react";
 
+import MenuIcon from "@/stories/assets/icons/svg/menu.svg";
+import PersonIcon from "@/stories/assets/icons/svg/person.svg";
+
 export default function NavigationBar() {
   const [open, setOpen] = useState(false);
 
@@ -15,20 +18,20 @@ export default function NavigationBar() {
 
   return (
     <>
-      <nav className="fixed max-w-[44rem] min-h-[7rem] -translate-x-1/2 top-0 left-1/2 flex justify-between w-full p-12 backdrop-blur-sm">
-        <div className="flex gap-x-8">
+      <nav className="fixed max-w-[44rem] min-h-[5.6rem] -translate-x-1/2 top-0 left-1/2 flex justify-between items-center w-full p-12 backdrop-blur-sm">
+        <div className="flex gap-x-16">
           {!open ? (
             <button className="" onClick={handleMenuClick}>
-              Menu
+              <MenuIcon />
             </button>
           ) : (
             <button onClick={handleMenuClose}>Back</button>
           )}
-          <div>Logo</div>
+          <div className="subhead2-m">아끼미</div>
         </div>
 
         <div>
-          <button>Profile</button>
+          <PersonIcon />
         </div>
       </nav>
 
