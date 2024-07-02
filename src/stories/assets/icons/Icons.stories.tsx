@@ -1,16 +1,14 @@
-import Icons from './Icons'
+import Icons from "./Icons";
 
-import type { ComponentMeta, ComponentStory } from '@storybook/react'
-
-
+// TODO: fix type
 export default {
-  title: 'akkimi/Icons',
+  title: "akkimi/Icons",
   component: Icons,
-} as ComponentMeta<typeof Icons>
+} as any;
 
-const Template: ComponentStory<typeof Icons> = () => {
-  return <Icons />
-}
+const Template: any = () => {
+  return <Icons />;
+};
 
-export const Primary = Template.bind({})
-Template.args = {}
+export const Primary = Template.bind({});
+Template.args = {};
