@@ -18,7 +18,7 @@ export default function NavigationBar() {
 
   return (
     <>
-      <nav className="fixed max-w-[44rem] min-h-[5.6rem] -translate-x-1/2 top-0 left-1/2 flex justify-between items-center w-full p-12 backdrop-blur-sm">
+      <nav className="fixed max-w-[44rem] min-h-[5.6rem] z-20 -translate-x-1/2 top-0 left-1/2 flex justify-between items-center w-full p-12 backdrop-blur-sm">
         <div className="flex gap-x-16">
           {!open ? (
             <button className="" onClick={handleMenuClick}>
