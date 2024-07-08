@@ -9,8 +9,6 @@ const nextConfig = {
           options: {
             /**
              * Replace SVG width and height by a custom value. If value is omitted, it uses 1em in order to make SVG size inherits from text size.
-             *
-             * 1rem 을 10px로 가져가기 때문에, 기본 아이콘 사이즈인 14px 맞추기 위해 1.4rem 으로 설정
              */
             icon: "2.4rem",
             replaceAttrValues: {
