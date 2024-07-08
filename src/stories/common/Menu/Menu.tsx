@@ -35,11 +35,9 @@ interface MenuListLayoutProps extends MenuProps {
 }
 
 export default function Menu({ title, items, showBackButton }: MenuProps) {
-  const [open, setOpen] = useState(false);
-
   const { back } = useRouter();
 
-  console.log("items: ", items);
+  const [open, setOpen] = useState(false);
 
   useScrollBlock({ isBlock: open });
 
@@ -79,7 +77,7 @@ export default function Menu({ title, items, showBackButton }: MenuProps) {
             {title?.hide !== true && (
               <div
                 className={cn("subhead2-m", {
-                  "absolute top-1/2 -translate-x-1/2 left-1/2 min-w-max":
+                  "absolute top-1/2 -translate-y-1/2 -translate-x-1/2 left-1/2 min-w-max":
                     title?.center,
                 })}
               >

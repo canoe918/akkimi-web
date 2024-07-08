@@ -1,3 +1,4 @@
+import CategoryGoodsList from "@/appComponents/category/CategoryGoodsList";
 import Footer from "@/stories/common/Footer/Footer";
 import Menu from "@/stories/common/Menu/Menu";
 
@@ -11,6 +12,9 @@ export default function Page() {
         }}
         showBackButton
       />
+
+      <CategoryGoodsList />
+
       <Footer />
     </main>
   );
