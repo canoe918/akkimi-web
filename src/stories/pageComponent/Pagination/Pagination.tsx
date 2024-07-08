@@ -7,11 +7,12 @@ import KeyboardArrowLeftIcon from "@/stories/assets/icons/svg/keyboard_arrow_lef
 import KeyboardArrowRightIcon from "@/stories/assets/icons/svg/keyboard_arrow_right.svg";
 
 export interface PaginationProps {
+  className?: string;
   page: number;
   size: number;
 }
 
-export function Pagination({ page, size }: PaginationProps) {
+export function Pagination({ className, page, size }: PaginationProps) {
   const router = useRouter();
   const pathname = usePathname();
   const startPage = Math.floor((page - 1) / size) * size;
@@ -41,7 +42,7 @@ export function Pagination({ page, size }: PaginationProps) {
   };
 
   return (
-    <div className="flex justify-center items-center gap-x-8">
+    <div className={cn("flex justify-center items-center gap-x-8", className)}>
       <button onClick={handleLeftClick}>
         <KeyboardArrowLeftIcon />
       </button>

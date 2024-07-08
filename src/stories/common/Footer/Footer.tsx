@@ -1,11 +1,16 @@
+import { cn } from "@/ilbs/tailwindCSS/style";
 import AppStoreImage from "@/stories/assets/images/app-store.png";
 import PlayStoreImage from "@/stories/assets/images/play-store.png";
 import Image from "next/image";
 import Link from "next/link";
 
-export default function Footer() {
+interface FooterProps {
+  className?: string;
+}
+
+export default function Footer({ className }: FooterProps) {
   return (
-    <footer className="w-full p-24 mt-80 bg-white">
+    <footer className={cn("w-full p-24 mt-80 bg-white", className)}>
       <div className="flex text-blue-gray-500 justify-between">
         <div className="flex flex-col gap-y-4">
           <h2 className="text-black headline-b">아끼미</h2>

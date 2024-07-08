@@ -1,13 +1,13 @@
 "use client";
 
 import Image from "next/image";
+import Link from "next/link";
 
 import { cn } from "@/ilbs/tailwindCSS/style";
 import ShareIcon from "@/stories/assets/icons/svg/arrow_outward.svg";
 import CertificateImage from "@/stories/assets/images/certificate.png";
 import LanguageImage from "@/stories/assets/images/language.png";
 import StartupImage from "@/stories/assets/images/startup.png";
-import Link from "next/link";
 
 const categoryListData = [
   {

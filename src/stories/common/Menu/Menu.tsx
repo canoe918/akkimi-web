@@ -27,6 +27,7 @@ interface MenuProps {
     hide?: boolean;
   };
   showBackButton?: boolean;
+  showMyButton?: boolean;
   items?: MenuItem[];
 }
 
@@ -34,7 +35,12 @@ interface MenuListLayoutProps extends MenuProps {
   open: boolean;
 }
 
-export default function Menu({ title, items, showBackButton }: MenuProps) {
+export default function Menu({
+  title,
+  items,
+  showBackButton,
+  showMyButton = true,
+}: MenuProps) {
   const { back } = useRouter();
 
   const [open, setOpen] = useState(false);
@@ -87,9 +93,11 @@ export default function Menu({ title, items, showBackButton }: MenuProps) {
           </div>
         </div>
 
-        <Link href="/my">
-          <PersonIcon />
-        </Link>
+        {showMyButton && (
+          <Link href="/my">
+            <PersonIcon />
+          </Link>
+        )}
       </nav>
 
       {items && <MenuListLayoutProps items={items} open={open} />}
