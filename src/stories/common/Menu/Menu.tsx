@@ -5,9 +5,11 @@ import { useState } from "react";
 
 import { useScrollBlock } from "@/hooks/useScrollBlock";
 import { cn } from "@/ilbs/tailwindCSS/style";
+import ArrowBackIcon from "@/stories/assets/icons/svg/arrow_back.svg";
 import KeyboardArrowLeftIcon from "@/stories/assets/icons/svg/keyboard_arrow_left.svg";
 import MenuIcon from "@/stories/assets/icons/svg/menu.svg";
 import PersonIcon from "@/stories/assets/icons/svg/person.svg";
+import { useRouter } from "next/navigation";
 import Divider from "../Divider/Divider";
 
 type MenuItem = {
@@ -19,15 +21,25 @@ type MenuItem = {
 };
 
 interface MenuProps {
-  items: MenuItem[];
+  title?: {
+    text: string;
+    center?: boolean;
+    hide?: boolean;
+  };
+  showBackButton?: boolean;
+  items?: MenuItem[];
 }
 
 interface MenuListLayoutProps extends MenuProps {
   open: boolean;
 }
 
-export default function Menu({ items }: MenuProps) {
+export default function Menu({ title, items, showBackButton }: MenuProps) {
   const [open, setOpen] = useState(false);
+
+  const { back } = useRouter();
+
+  console.log("items: ", items);
 
   useScrollBlock({ isBlock: open });
 
@@ -39,20 +51,42 @@ export default function Menu({ items }: MenuProps) {
     setOpen(!open);
   };
 
+  const handleBackClick = () => {
+    back();
+  };
+
   return (
     <>
       <nav className="fixed max-w-[44rem] h-[5.6rem] z-20 -translate-x-1/2 top-0 left-1/2 flex justify-between items-center w-full p-12 backdrop-blur-lg">
-        <div className="flex gap-x-16">
-          {!open ? (
-            <button className="" onClick={handleMenuClick}>
-              <MenuIcon />
-            </button>
-          ) : (
-            <button onClick={handleMenuClose}>
-              <KeyboardArrowLeftIcon />
-            </button>
-          )}
-          <div className="subhead2-m">아끼미</div>
+        <div className="">
+          <div className="flex gap-x-16">
+            {items &&
+              (!open ? (
+                <button onClick={handleMenuClick}>
+                  <MenuIcon />
+                </button>
+              ) : (
+                <button onClick={handleMenuClose}>
+                  <KeyboardArrowLeftIcon />
+                </button>
+              ))}
+            {showBackButton && (
+              <button onClick={handleBackClick}>
+                <ArrowBackIcon />
+              </button>
+            )}
+
+            {title?.hide !== true && (
+              <div
+                className={cn("subhead2-m", {
+                  "absolute top-1/2 -translate-x-1/2 left-1/2 min-w-max":
+                    title?.center,
+                })}
+              >
+                {title?.text}
+              </div>
+            )}
+          </div>
         </div>
 
         <Link href="/my">
@@ -60,7 +94,7 @@ export default function Menu({ items }: MenuProps) {
         </Link>
       </nav>
 
-      <MenuListLayoutProps items={items} open={open} />
+      {items && <MenuListLayoutProps items={items} open={open} />}
     </>
   );
 }

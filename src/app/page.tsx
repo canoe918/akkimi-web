@@ -14,7 +14,7 @@ export default async function Home() {
   return (
     <>
       <main className="flex flex-col w-full h-full">
-        <Menu items={BASIC_MENU_ITEMS} />
+        <Menu title={{ text: "아끼미" }} items={BASIC_MENU_ITEMS} />
 
         <MainBanner />
 
