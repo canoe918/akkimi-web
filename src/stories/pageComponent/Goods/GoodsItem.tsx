@@ -1,5 +1,6 @@
 import { cn } from "@/ilbs/tailwindCSS/style";
 import Image, { StaticImageData } from "next/image";
+import Link from "next/link";
 
 export interface GoodsItemProps {
   image: {
@@ -8,6 +9,7 @@ export interface GoodsItemProps {
   };
   title: string;
   description: string;
+  href: string;
   discount?: JSX.Element;
   children?: JSX.Element;
 }
@@ -17,9 +19,9 @@ export interface GoodsItemDescriptionProps {
   description: string;
 }
 
-export function GoodsItem({ image, discount, children }: GoodsItemProps) {
+export function GoodsItem({ href, image, discount, children }: GoodsItemProps) {
   return (
-    <div className="relative overflow-hidden w-full flex">
+    <Link href={href} className="relative overflow-hidden w-full flex">
       {discount}
 
       <Image
@@ -31,7 +33,7 @@ export function GoodsItem({ image, discount, children }: GoodsItemProps) {
       />
 
       {children}
-    </div>
+    </Link>
   );
 }
 

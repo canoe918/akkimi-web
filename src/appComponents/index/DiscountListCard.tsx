@@ -51,6 +51,7 @@ export default function DiscountListCard() {
             return (
               <GoodsItem
                 key={id}
+                href={`/goods/${id}`}
                 title={title}
                 description={description}
                 image={{

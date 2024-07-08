@@ -15,28 +15,28 @@ const categoryListData = [
     title: "어학",
     backgroundColor: "#EBE4FF",
     imgSrc: LanguageImage,
-    url: "/",
+    url: "/category/language",
   },
   {
     id: 2,
     title: "자격증",
     backgroundColor: "#FFE4F1",
     imgSrc: CertificateImage,
-    url: "/",
+    url: "/category/certificate",
   },
   {
     id: 3,
     title: "창업",
     backgroundColor: "#FFF8E4",
     imgSrc: StartupImage,
-    url: "/",
+    url: "/category/start-up",
   },
   {
     id: 4,
     title: "어떤 강의가\n필요하세요?",
     backgroundColor: "#2F54EB",
     content: "투표하러가기",
-    url: "/",
+    url: "/votes",
   },
 ];
 

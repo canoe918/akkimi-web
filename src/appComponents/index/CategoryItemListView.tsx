@@ -52,6 +52,7 @@ export default function CategoryItemListView() {
             return (
               <GoodsLargeItem
                 key={id}
+                href={`/goods/${id}`}
                 title={title}
                 description={description}
                 image={{
