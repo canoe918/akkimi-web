@@ -4,7 +4,7 @@ import DiscountComingSoonListCard from "@/appComponents/index/DiscountComingSoon
 import DiscountListCard from "@/appComponents/index/DiscountListCard";
 import MainBanner from "@/appComponents/index/MainBanner";
 import NewListCard from "@/appComponents/index/NewListCard";
-import { BASIC_MENU_ITEMS } from "@/ilbs/config/menu.config";
+import { BASIC_MENU_ITEMS } from "@/ilbs/const/menu.const";
 import Footer from "@/stories/common/Footer/Footer";
 import Menu from "@/stories/common/Menu/Menu";
 import EventPopup from "@/stories/common/Popup/EventPopup";

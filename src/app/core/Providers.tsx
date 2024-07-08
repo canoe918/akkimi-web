@@ -1,6 +1,6 @@
 "use client";
 
-import { NODE_ENV } from "@/ilbs/env.const";
+import { NODE_ENV } from "@/ilbs/const/env.const";
 import { queryClient } from "@/ilbs/reactQuery/queryClient";
 import { QueryClientProvider } from "@tanstack/react-query";
 import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
@@ -23,7 +23,7 @@ export function AppProvider({ children }: PropsWithChildren) {
 
 export function MobileWebProvider({ children }: PropsWithChildren) {
   return (
-    <div className="max-w-[44rem] pt-[5.6rem] min-h-full shadow-lg bg-wht mx-auto">
+    <div className="bg-white max-w-[44rem] pt-[5.6rem] min-h-full shadow-lg bg-wht mx-auto">
       {children}
     </div>
   );
