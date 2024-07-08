@@ -1,6 +1,6 @@
-import Image, { StaticImageData } from "next/image";
-
 import TestImage from "@/stories/assets/images/test-image.png";
+import { Label } from "@/stories/common/Label/Label";
+import { GoodsLargeItem } from "@/stories/pageComponent/Goods/GoodsLargeItem";
 import ShowMoreButton from "./ShowMoreButton";
 
 const discountComingSoonCardListData = [
@@ -38,48 +38,31 @@ const discountComingSoonCardListData = [
 
 const MAX_COUNT = 3;
 
-interface CardItemProps {
-  imgSrc: StaticImageData;
-  title: string;
-  description: string;
-}
-
-function CardItem({ title, imgSrc, description }: CardItemProps) {
-  return (
-    <div className="rounded relative inline-block min-w-[28rem] aspect-[1.2/1] overflow-hidden">
-      <Image src={imgSrc} className="w-full h-full object-cover" alt={title} />
-
-      <div className="absolute text-white left-16 right-16 bottom-16">
-        <div className="flex flex-col">
-          <h3 className="subhead1-m">{title}</h3>
-          <p className="subhead2-m">{description}</p>
-        </div>
-      </div>
-
-      <button className="absolute top-12 right-12 bg-red-1 text-red-6 subhead1-b rounded-full px-16 py-8">
-        3명 남음
-      </button>
-    </div>
-  );
-}
-
 export default function CategoryItemListView() {
   const showMore = discountComingSoonCardListData.length >= MAX_COUNT;
 
   return (
     <section className="flex flex-col pt-58">
-      <h3 className="px-24 subhead3-m mb-20">곧 할인이 시작돼요!</h3>
+      <h3 className="px-24 subhead3-m mb-20">어학</h3>
 
       <div className="flex flex-col px-20 pb-10 overflow-x-auto gap-y-16">
         {discountComingSoonCardListData
           .slice(0, MAX_COUNT)
           .map(({ id, title, description, imgSrc }) => {
             return (
-              <CardItem
+              <GoodsLargeItem
                 key={id}
                 title={title}
                 description={description}
-                imgSrc={imgSrc}
+                image={{
+                  src: imgSrc,
+                  alt: title,
+                }}
+                status={
+                  <Label type="red" className="absolute top-12 right-12 ">
+                    3명 남음
+                  </Label>
+                }
               />
             );
           })}
