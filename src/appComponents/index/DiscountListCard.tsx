@@ -1,5 +1,6 @@
 import TestImage from "@/stories/assets/images/test-image.png";
 import { GoodsItem } from "@/stories/pageComponent/Goods/GoodsItem";
+import { ProfileStack } from "@/stories/pageComponent/Goods/ProfileStack";
 import ShowMoreButton from "./ShowMoreButton";
 
 const discountCardListData = [
@@ -60,16 +61,18 @@ export default function DiscountListCard() {
                 }}
                 discount={<GoodsItem.DiscountBadge amount={15} color="red" />}
               >
-                <GoodsItem.Description
-                  title={title}
-                  description={description}
-                />
+                <GoodsItem.Description title={title} description={description}>
+                  <ProfileStack
+                    profileUrls={[TestImage.src, TestImage.src, TestImage.src]}
+                    amount={3}
+                  />
+                </GoodsItem.Description>
               </GoodsItem>
             );
           })}
       </div>
 
-      {showMore && <ShowMoreButton />}
+      {showMore && <ShowMoreButton href="/category/discount" />}
     </section>
   );
 }

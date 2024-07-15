@@ -1,6 +1,5 @@
-import Image, { StaticImageData } from "next/image";
-
 import TestImage from "@/stories/assets/images/test-image.png";
+import { GoodsMediumItem } from "@/stories/pageComponent/Goods/GoodsMediumItem";
 import ShowMoreButton from "./ShowMoreButton";
 
 const discountComingSoonCardListData = [
@@ -38,35 +37,6 @@ const discountComingSoonCardListData = [
 
 const MAX_COUNT = 5;
 
-interface CardItemProps {
-  imgSrc: StaticImageData;
-  title: string;
-  description: string;
-}
-
-function CardItem({ title, imgSrc, description }: CardItemProps) {
-  return (
-    <div className="rounded relative inline-block min-w-[28rem] aspect-[1.2/1] w-[28rem] overflow-hidden">
-      <Image
-        src={imgSrc}
-        className="bg-blue-gray-600 w-full h-full object-cover rounded"
-        alt={title}
-      />
-
-      <div className="absolute text-white left-16 right-16 bottom-16">
-        <div className="flex flex-col mb-8">
-          <h3 className="subhead1-m">{title}</h3>
-          <p className="subhead2-m">{description}</p>
-        </div>
-
-        <button className="bg-red-1 text-red-6 subhead1-b rounded-full px-16 py-8">
-          3명 남음
-        </button>
-      </div>
-    </div>
-  );
-}
-
 export default function DiscountComingSoonListCard() {
   const showMore = discountComingSoonCardListData.length >= MAX_COUNT;
 
@@ -79,17 +49,21 @@ export default function DiscountComingSoonListCard() {
           .slice(0, MAX_COUNT)
           .map(({ id, title, description, imgSrc }) => {
             return (
-              <CardItem
+              <GoodsMediumItem
                 key={id}
+                href={`/goods/${id}`}
                 title={title}
                 description={description}
-                imgSrc={imgSrc}
+                image={{
+                  src: imgSrc,
+                  alt: title,
+                }}
               />
             );
           })}
       </div>
 
-      {showMore && <ShowMoreButton />}
+      {showMore && <ShowMoreButton href="/category/discount" />}
     </section>
   );
 }

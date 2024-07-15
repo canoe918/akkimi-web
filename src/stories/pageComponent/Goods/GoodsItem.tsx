@@ -17,18 +17,19 @@ export interface GoodsItemProps {
 export interface GoodsItemDescriptionProps {
   title: string;
   description: string;
+  children?: JSX.Element;
 }
 
 export function GoodsItem({ href, image, discount, children }: GoodsItemProps) {
   return (
-    <Link href={href} className="relative overflow-hidden w-full flex">
+    <Link href={""} className="relative overflow-hidden w-full flex">
       {discount}
 
       <Image
         src={image.src}
         width={0}
         height={0}
-        className="rounded max-w-[12rem] w-full aspect-square bg-blue-gray-200"
+        className="rounded max-w-[12rem] object-cover w-full aspect-square bg-blue-gray-200"
         alt={image.alt}
       />
 
@@ -61,6 +62,7 @@ GoodsItem.DiscountBadge = function GoodsItemDiscountBadge({
 GoodsItem.Description = function GoodsItemDescription({
   title,
   description,
+  children,
 }: GoodsItemDescriptionProps) {
   return (
     <div className="py-8 w-full px-24 flex flex-col justify-between bg-white">
@@ -69,7 +71,7 @@ GoodsItem.Description = function GoodsItemDescription({
         <p className="subhead2-m text-blue-gray-900">{description}</p>
       </div>
 
-      <div className="mt-8">N명 모임</div>
+      {children}
     </div>
   );
 };

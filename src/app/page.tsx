@@ -4,6 +4,7 @@ import DiscountComingSoonListCard from "@/appComponents/index/DiscountComingSoon
 import DiscountListCard from "@/appComponents/index/DiscountListCard";
 import MainBanner from "@/appComponents/index/MainBanner";
 import NewListCard from "@/appComponents/index/NewListCard";
+import RecommendedListCard from "@/appComponents/index/RecommendedListCard";
 import SurveyCard from "@/appComponents/index/SurveyCard";
 import { BASIC_MENU_ITEMS } from "@/ilbs/const/menu.const";
 import Footer from "@/stories/common/Footer/Footer";
@@ -30,6 +31,8 @@ export default async function Home() {
         <DiscountListCard />
 
         <DiscountComingSoonListCard />
+
+        <RecommendedListCard />
 
         <CategoryItemListView />
 

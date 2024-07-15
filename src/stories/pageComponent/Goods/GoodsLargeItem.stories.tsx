@@ -24,6 +24,7 @@ const Template: Story = (args) => {
 
 export const Primary = Template.bind({});
 Primary.args = {
+  href: "/",
   title: "hello",
   description: "world",
   image: {

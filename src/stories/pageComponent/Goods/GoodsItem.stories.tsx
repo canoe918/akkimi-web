@@ -20,6 +20,7 @@ const Template: Story = (args) => {
 
 export const Primary = Template.bind({});
 Primary.args = {
+  href: "#",
   image: {
     src: TEST_IMAGE_URL[0],
     alt: TEST_IMAGE_URL[0],
@@ -29,6 +30,7 @@ Primary.args = {
 
 export const DiscountBadge = Template.bind({});
 DiscountBadge.args = {
+  href: "#",
   image: {
     src: TEST_IMAGE_URL[0],
     alt: TEST_IMAGE_URL[0],

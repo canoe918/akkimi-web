@@ -69,7 +69,7 @@ export default function CategoryItemListView() {
           })}
       </div>
 
-      {showMore && <ShowMoreButton />}
+      {showMore && <ShowMoreButton href="/category/discount" />}
     </section>
   );
 }
