@@ -7,6 +7,7 @@ const config: Config = {
     extend: {
       colors: {
         white: "#FFFFFF",
+        "white-20": "rgba(255,255,255,0.2)",
         "blue-gray-0": "#FFFFFF",
         "blue-gray-25": "#FCFCFD",
         "blue-gray-50": "#F9FAFB",

@@ -3,6 +3,7 @@ import CategoryItemListView from "@/appComponents/index/CategoryItemListView";
 import DiscountComingSoonListCard from "@/appComponents/index/DiscountComingSoonListCard";
 import DiscountListCard from "@/appComponents/index/DiscountListCard";
 import MainBanner from "@/appComponents/index/MainBanner";
+import NeedsCommentSection from "@/appComponents/index/NeedsCommentSection";
 import NewListCard from "@/appComponents/index/NewListCard";
 import RecommendedListCard from "@/appComponents/index/RecommendedListCard";
 import SurveyCard from "@/appComponents/index/SurveyCard";
@@ -35,6 +36,8 @@ export default async function Home() {
         <RecommendedListCard />
 
         <CategoryItemListView />
+
+        <NeedsCommentSection />
 
         <Space className="h-60" />
 
