@@ -61,6 +61,10 @@ const config: Config = {
         "geekblue-10": "#030852",
         transparent: "transparent",
       },
+      boxShadow: {
+        sm: "0px 0px 0px 4px",
+        lg: "0px 8px 8px -4px",
+      },
       spacing: {
         0: "0.0rem",
         2: "0.2rem",

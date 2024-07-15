@@ -4,6 +4,7 @@ import DiscountComingSoonListCard from "@/appComponents/index/DiscountComingSoon
 import DiscountListCard from "@/appComponents/index/DiscountListCard";
 import MainBanner from "@/appComponents/index/MainBanner";
 import NewListCard from "@/appComponents/index/NewListCard";
+import SurveyCard from "@/appComponents/index/SurveyCard";
 import { BASIC_MENU_ITEMS } from "@/ilbs/const/menu.const";
 import Footer from "@/stories/common/Footer/Footer";
 import Menu from "@/stories/common/Menu/Menu";
@@ -17,6 +18,10 @@ export default async function Home() {
         <Menu title={{ text: "아끼미" }} items={BASIC_MENU_ITEMS} />
 
         <MainBanner />
+
+        <div className="px-24 mt-12">
+          <SurveyCard />
+        </div>
 
         <CategoryGrid />
 
