@@ -22,7 +22,7 @@ export interface GoodsItemDescriptionProps {
 
 export function GoodsItem({ href, image, discount, children }: GoodsItemProps) {
   return (
-    <Link href={""} className="relative overflow-hidden w-full flex">
+    <Link href={href} className="relative overflow-hidden w-full flex">
       {discount}
 
       <Image

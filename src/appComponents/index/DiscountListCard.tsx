@@ -64,7 +64,6 @@ export default function DiscountListCard() {
                 <GoodsItem.Description title={title} description={description}>
                   <ProfileStack
                     profileUrls={[TestImage.src, TestImage.src, TestImage.src]}
-                    amount={3}
                   />
                 </GoodsItem.Description>
               </GoodsItem>

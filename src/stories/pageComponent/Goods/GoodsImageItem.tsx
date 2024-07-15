@@ -12,7 +12,6 @@ export interface GoodsImageItemProps {
   };
   title: string;
   description: string;
-  showProfile?: boolean;
   children?: JSX.Element;
 }
 
