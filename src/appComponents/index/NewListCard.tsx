@@ -1,5 +1,6 @@
 import TestImage from "@/stories/assets/images/test-image.png";
 import { GoodsImageItem } from "@/stories/pageComponent/Goods/GoodsImageItem";
+import { ProfileStack } from "@/stories/pageComponent/Goods/ProfileStack";
 import ShowMoreButton from "./ShowMoreButton";
 
 const newCardListData = [
@@ -58,7 +59,11 @@ export default function NewListCard() {
                   src: imgSrc,
                   alt: title,
                 }}
-              />
+              >
+                <div className="mt-8">
+                  <ProfileStack />
+                </div>
+              </GoodsImageItem>
             );
           })}
       </div>

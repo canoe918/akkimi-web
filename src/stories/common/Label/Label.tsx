@@ -13,7 +13,7 @@ export function Label({ type, className, children, onClick }: LabelProps) {
   return (
     <span
       className={cn(
-        "subhead1-b rounded-full px-16 py-8",
+        "subhead1-b w-fit rounded-full px-16 py-8",
         {
           "bg-red-1 text-red-6": type === "red",
           "bg-blue-gray-50 text-blue-gray-900": type === "light-gray",
