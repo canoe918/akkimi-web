@@ -1,5 +1,4 @@
-import GlobalFallback from './GlobalFallback';
-import RetryFallback from './RetryFallback';
-import * as Skeleton from './Skeleton';
+import GlobalFallback from "./GlobalFallback";
+import RetryFallback from "./RetryFallback";
 
-export { GlobalFallback, RetryFallback, Skeleton };
+export { GlobalFallback, RetryFallback };

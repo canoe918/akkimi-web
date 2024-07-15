@@ -1,6 +1,7 @@
 import NewGoodsList from "@/appComponents/category/NewGoodsList";
 import Footer from "@/stories/common/Footer/Footer";
 import Menu from "@/stories/common/Menu/Menu";
+import { Suspense } from "react";
 
 export default function Page() {
   return (
@@ -13,7 +14,9 @@ export default function Page() {
         showBackButton
       />
 
-      <NewGoodsList />
+      <Suspense fallback={<div></div>}>
+        <NewGoodsList />
+      </Suspense>
 
       <Footer />
     </main>

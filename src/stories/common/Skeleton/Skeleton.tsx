@@ -1,4 +1,4 @@
-export function SkeletonCardList() {
+export function Skeleton() {
   return (
     <div className="flex flex-col w-full min-w-full gap-4">
       {Array.from({ length: 4 }, (_, index) => (

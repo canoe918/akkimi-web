@@ -19,7 +19,7 @@ const Template: Story = (args) => {
 
 export const Red = Template.bind({});
 Red.args = {
-  type: "primary",
+  theme: "primary",
   size: "xl",
   children: "버튼명",
 } as ButtonProps;
