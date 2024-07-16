@@ -1,7 +1,8 @@
-import ChallengeImage from "@/stories/assets/images/challenge.png";
-import Button from "@/stories/common/Button/Button";
 import Image from "next/image";
 import Link from "next/link";
+
+import ChallengeImage from "@/stories/assets/images/challenge.png";
+import Button from "@/stories/common/Button/Button";
 
 export default function SurveyCard() {
   return (

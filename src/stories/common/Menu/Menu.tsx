@@ -26,9 +26,10 @@ interface MenuProps {
     center?: boolean;
     hide?: boolean;
   };
+  items?: MenuItem[];
   showBackButton?: boolean;
   showMyButton?: boolean;
-  items?: MenuItem[];
+  existHeight?: boolean;
 }
 
 interface MenuListLayoutProps extends MenuProps {
@@ -40,6 +41,7 @@ export default function Menu({
   items,
   showBackButton,
   showMyButton = true,
+  existHeight = true,
 }: MenuProps) {
   const { back } = useRouter();
 
@@ -60,7 +62,7 @@ export default function Menu({
   };
 
   return (
-    <>
+    <div>
       <nav className="fixed max-w-[44rem] h-[5.6rem] z-20 -translate-x-1/2 top-0 left-1/2 flex justify-between items-center w-full p-12 backdrop-blur-lg">
         <div className="">
           <div className="flex gap-x-16">
@@ -101,7 +103,8 @@ export default function Menu({
       </nav>
 
       {items && <MenuListLayoutProps items={items} open={open} />}
-    </>
+      {existHeight && <div className="h-[5.6rem] w-full"></div>}
+    </div>
   );
 }
 
