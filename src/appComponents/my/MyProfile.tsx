@@ -5,6 +5,7 @@ import Image from "next/image";
 import EditSquareIcon from "@/stories/assets/icons/svg/edit_square.svg";
 import TestImage from "@/stories/assets/images/test-image.png";
 import { Label } from "@/stories/common/Label/Label";
+import Link from "next/link";
 
 export default function MyProfile() {
   return (
@@ -28,9 +29,9 @@ export default function MyProfile() {
       <div className="mt-12 flex gap-x-8 justify-center items-center">
         <h2 className="headline-b">예민한 기린 22325</h2>
 
-        <button>
+        <Link href="/my/edit">
           <EditSquareIcon />
-        </button>
+        </Link>
       </div>
 
       <div>
