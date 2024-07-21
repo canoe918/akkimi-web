@@ -38,7 +38,7 @@ export default function GoodsNeedsGoalCard() {
             저도 파티에 참여할래요!
           </Button>
 
-          <Button theme="primary" size="xl" className="w-full">
+          <Button theme="secondary" size="xl" className="w-full">
             공유하기
           </Button>
         </div>

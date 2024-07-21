@@ -10,7 +10,11 @@ import Menu from "@/stories/common/Menu/Menu";
 export default function Page() {
   return (
     <main>
-      <Menu showBackButton existHeight={false} />
+      <Menu
+        showBackButton
+        existHeight={false}
+        navClassName="backdrop-blur-none"
+      />
 
       <GoodsDetailIntroduction />
 

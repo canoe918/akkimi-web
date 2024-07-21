@@ -1,6 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
 
+import { cn } from "@/ilbs/tailwindCSS/style";
 import ArrowForwardIcon from "@/stories/assets/icons/svg/arrow_forward.svg";
 import ChallengeImage from "@/stories/assets/images/challenge.png";
 
@@ -23,6 +24,8 @@ const GROWTH_TYPE_LIST = [
   },
 ];
 
+const ACTIVE_ID = 3;
+
 export default function GrowthTypeRecommend() {
   return (
     <div className="px-24 mt-36">
@@ -33,9 +36,24 @@ export default function GrowthTypeRecommend() {
 
         <div className="flex mt-24 gap-x-16">
           {GROWTH_TYPE_LIST.map(({ id, imageSrc, profileSrc, type }) => {
+            const isActive = ACTIVE_ID === id;
+
             return (
               <div key={id} className="flex w-full flex-col">
-                <div className="w-full aspect-square rounded-lg bg-blue-gray-300"></div>
+                <div
+                  className={cn(
+                    "relative w-full aspect-square rounded-lg bg-blue-gray-300 border-solid border border-transparent",
+                    {
+                      "border-geekblue-6": isActive,
+                    },
+                  )}
+                >
+                  {isActive && (
+                    <div className="w-24 h-24 bg-black rounded-full bottom-0 right-0 absolute">
+                      <div></div>
+                    </div>
+                  )}
+                </div>
 
                 <p className="mt-8 text-center body2-r">{type}</p>
               </div>

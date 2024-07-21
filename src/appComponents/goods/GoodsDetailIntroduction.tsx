@@ -5,12 +5,12 @@ import Image from "next/image";
 export default function GoodsDetailIntroduction() {
   return (
     <section>
-      <div className="w-full h-full relative">
+      <div className="w-full h-full relative overflow-hidden pb-[2rem]">
         <div
-          className="absolute z-[2] w-full bottom-0 left-0 right-0 aspect-[5/1]"
+          className="absolute z-[2] w-full bottom-0 left-0 right-0 aspect-[3/1]"
           style={{
             background:
-              "linear-gradient(180deg, rgba(255, 255, 255, 0) 0%, rgba(255, 255, 255, 0.60) 40%, rgba(255, 255, 255, 0.85) 75%, #FFFFFF 100%)",
+              "linear-gradient(180deg, rgba(255, 255, 255, 0) 0%, rgba(255, 255, 255, 0.60) 40%, rgba(255, 255, 255, 0.85) 60%, #FFFFFF 85%)",
           }}
         />
 

@@ -40,7 +40,7 @@ export function GoodsImageItem({
           alt={image.alt}
         />
 
-        <div className="border text-blue-gray-700 border-solid border-blue-gray-200 rounded-bl rounded-br p-24 bg-white">
+        <div className="border text-blue-gray-700 rounded-bl rounded-br p-24 bg-blue-gray-50">
           <h3 className="subhead1-m">{title}</h3>
           <p className="subhead2-b text-blue-gray-900">{description}</p>
 
