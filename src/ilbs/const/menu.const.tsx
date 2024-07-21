@@ -14,7 +14,7 @@ export const BASIC_MENU_ITEMS = [
     label: "자격증",
   },
   {
-    key: "/category/language",
+    key: "/category/more",
     label: "더 많은 카테고리",
     icon: <ArrowOutwardIcon />,
     divide: true,

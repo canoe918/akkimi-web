@@ -23,7 +23,7 @@ export function AppProvider({ children }: PropsWithChildren) {
 
 export function MobileWebProvider({ children }: PropsWithChildren) {
   return (
-    <div className="bg-white max-w-[44rem] min-h-full shadow-lg bg-wht mx-auto">
+    <div className="bg-white max-w-[44rem] min-h-[100vh] shadow-lg bg-wht mx-auto">
       {children}
     </div>
   );
