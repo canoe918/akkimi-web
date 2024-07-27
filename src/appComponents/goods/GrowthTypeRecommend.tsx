@@ -1,7 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
 
-import { cn } from "@/ilbs/tailwindCSS/style";
+import { cn } from "@/libs/tailwindCSS/style";
 import ArrowForwardIcon from "@/stories/assets/icons/svg/arrow_forward.svg";
 import ChallengeImage from "@/stories/assets/images/challenge.png";
 

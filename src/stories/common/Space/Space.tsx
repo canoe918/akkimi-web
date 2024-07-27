@@ -1,4 +1,4 @@
-import { cn } from "@/ilbs/tailwindCSS/style";
+import { cn } from "@/libs/tailwindCSS/style";
 
 interface SpaceProps {
   className?: string;

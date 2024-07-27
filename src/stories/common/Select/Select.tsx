@@ -1,4 +1,4 @@
-import { cn } from "@/ilbs/tailwindCSS/style";
+import { cn } from "@/libs/tailwindCSS/style";
 import { SelectHTMLAttributes } from "react";
 
 export interface SelectProps extends SelectHTMLAttributes<HTMLSelectElement> {

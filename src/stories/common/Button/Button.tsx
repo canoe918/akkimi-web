@@ -1,7 +1,8 @@
-import { cn } from "@/ilbs/tailwindCSS/style";
+import { cn } from "@/libs/tailwindCSS/style";
 import { ButtonHTMLAttributes } from "react";
 
 export type ButtonTheme =
+  | "custom"
   | "primary"
   | "tertiary"
   | "destructive"

@@ -1,4 +1,4 @@
-import { cn } from "@/ilbs/tailwindCSS/style";
+import { cn } from "@/libs/tailwindCSS/style";
 import AppStoreImage from "@/stories/assets/images/app-store.png";
 import PlayStoreImage from "@/stories/assets/images/play-store.png";
 import Image from "next/image";

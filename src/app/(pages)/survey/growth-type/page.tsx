@@ -1,5 +1,5 @@
 import GrowthTypeSurveySection from "@/appComponents/survey/GrowthTypeSurveySection";
-import { BASIC_MENU_ITEMS } from "@/ilbs/const/menu.const";
+import { BASIC_MENU_ITEMS } from "@/libs/const/menu.const";
 import Menu from "@/stories/common/Menu/Menu";
 
 export default function Page() {

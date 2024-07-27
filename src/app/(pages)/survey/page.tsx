@@ -1,4 +1,4 @@
-import { BASIC_MENU_ITEMS } from "@/ilbs/const/menu.const";
+import { BASIC_MENU_ITEMS } from "@/libs/const/menu.const";
 import SurveyMainImage from "@/stories/assets/images/survey-main.png";
 import Menu from "@/stories/common/Menu/Menu";
 import Image from "next/image";

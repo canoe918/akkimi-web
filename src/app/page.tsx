@@ -7,7 +7,7 @@ import NeedsCommentSection from "@/appComponents/index/NeedsCommentSection";
 import NewListCard from "@/appComponents/index/NewListCard";
 import RecommendedListCard from "@/appComponents/index/RecommendedListCard";
 import SurveyCard from "@/appComponents/index/SurveyCard";
-import { BASIC_MENU_ITEMS } from "@/ilbs/const/menu.const";
+import { BASIC_MENU_ITEMS } from "@/libs/const/menu.const";
 import Footer from "@/stories/common/Footer/Footer";
 import Menu from "@/stories/common/Menu/Menu";
 import EventPopup from "@/stories/common/Popup/EventPopup";

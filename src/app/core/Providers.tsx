@@ -1,11 +1,32 @@
 "use client";
 
-import { NODE_ENV } from "@/ilbs/const/env.const";
-import { queryClient } from "@/ilbs/reactQuery/queryClient";
+import { useKakaoAuth } from "@/hooks/useKakaoAuth";
+import { NODE_ENV } from "@/libs/const/env.const";
+import { queryClient } from "@/libs/reactQuery/queryClient";
 import { QueryClientProvider } from "@tanstack/react-query";
 import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
-import { createContext, PropsWithChildren, RefObject, useRef } from "react";
+import {
+  createContext,
+  PropsWithChildren,
+  RefObject,
+  useEffect,
+  useRef,
+} from "react";
 import { ErrorBoundary } from "react-error-boundary";
+
+declare global {
+  var Kakao: any;
+}
+
+export function AuthProvider({ children }: PropsWithChildren) {
+  const { initialize } = useKakaoAuth();
+
+  useEffect(() => {
+    initialize();
+  }, []);
+
+  return <>{children}</>;
+}
 
 export function AppProvider({ children }: PropsWithChildren) {
   return (
@@ -15,7 +36,7 @@ export function AppProvider({ children }: PropsWithChildren) {
           <ReactQueryDevtools initialIsOpen={false} />
         )}
 
-        {children}
+        <AuthProvider>{children}</AuthProvider>
       </QueryClientProvider>
     </ErrorBoundary>
   );

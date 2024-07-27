@@ -1,4 +1,4 @@
-import { cn } from "@/ilbs/tailwindCSS/style";
+import { cn } from "@/libs/tailwindCSS/style";
 import Image, { StaticImageData } from "next/image";
 import Link from "next/link";
 

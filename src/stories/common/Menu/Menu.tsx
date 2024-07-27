@@ -1,16 +1,19 @@
 "use client";
 
 import Link from "next/link";
+import { useRouter } from "next/navigation";
 import { useState } from "react";
 
 import { useScrollBlock } from "@/hooks/useScrollBlock";
-import { cn } from "@/ilbs/tailwindCSS/style";
+import { COOKIE_KEY_ACCESS_TOKEN } from "@/libs/const/cookie.const";
+import { cn } from "@/libs/tailwindCSS/style";
 import ArrowBackIcon from "@/stories/assets/icons/svg/arrow_back.svg";
 import KeyboardArrowLeftIcon from "@/stories/assets/icons/svg/keyboard_arrow_left.svg";
 import MenuIcon from "@/stories/assets/icons/svg/menu.svg";
 import PersonIcon from "@/stories/assets/icons/svg/person.svg";
-import { useRouter } from "next/navigation";
+import { getCookie } from "cookies-next";
 import Divider from "../Divider/Divider";
+import Modal from "../Modal/Modal";
 
 type MenuItem = {
   key: string;
@@ -45,9 +48,10 @@ export default function Menu({
   showMyButton = true,
   existHeight = true,
 }: MenuProps) {
-  const { back } = useRouter();
+  const { push, back } = useRouter();
 
   const [open, setOpen] = useState(false);
+  const [openAuthModal, setOpenAuthModal] = useState(false);
 
   useScrollBlock({ isBlock: open });
 
@@ -63,55 +67,68 @@ export default function Menu({
     back();
   };
 
+  const handleMyIconClick = (href: string) => {
+    const accessToken = getCookie(COOKIE_KEY_ACCESS_TOKEN);
+    if (!accessToken) {
+      setOpenAuthModal(true);
+    } else {
+      push(href);
+    }
+  };
+
   return (
-    <div>
-      <nav
-        className={cn(
-          "fixed max-w-[44rem] h-[5.6rem] z-20 -translate-x-1/2 top-0 left-1/2 flex justify-between items-center w-full p-12 backdrop-blur-lg",
-          navClassName,
-        )}
-      >
-        <div className="">
-          <div className="flex gap-x-16">
-            {items &&
-              (!open ? (
-                <button onClick={handleMenuClick}>
-                  <MenuIcon />
+    <>
+      <div>
+        <nav
+          className={cn(
+            "fixed max-w-[44rem] h-[5.6rem] z-20 -translate-x-1/2 top-0 left-1/2 flex justify-between items-center w-full p-12 backdrop-blur-lg",
+            navClassName,
+          )}
+        >
+          <div className="">
+            <div className="flex gap-x-16">
+              {items &&
+                (!open ? (
+                  <button onClick={handleMenuClick}>
+                    <MenuIcon />
+                  </button>
+                ) : (
+                  <button onClick={handleMenuClose}>
+                    <KeyboardArrowLeftIcon />
+                  </button>
+                ))}
+              {showBackButton && (
+                <button onClick={handleBackClick}>
+                  <ArrowBackIcon />
                 </button>
-              ) : (
-                <button onClick={handleMenuClose}>
-                  <KeyboardArrowLeftIcon />
-                </button>
-              ))}
-            {showBackButton && (
-              <button onClick={handleBackClick}>
-                <ArrowBackIcon />
-              </button>
-            )}
+              )}
 
-            {title?.hide !== true && (
-              <div
-                className={cn("subhead2-m", {
-                  "absolute top-1/2 -translate-y-1/2 -translate-x-1/2 left-1/2 min-w-max":
-                    title?.center,
-                })}
-              >
-                {title?.text}
-              </div>
-            )}
+              {title?.hide !== true && (
+                <div
+                  className={cn("subhead2-m", {
+                    "absolute top-1/2 -translate-y-1/2 -translate-x-1/2 left-1/2 min-w-max":
+                      title?.center,
+                  })}
+                >
+                  {title?.text}
+                </div>
+              )}
+            </div>
           </div>
-        </div>
 
-        {showMyButton && (
-          <Link href="/my">
-            <PersonIcon />
-          </Link>
-        )}
-      </nav>
+          {showMyButton && (
+            <button onClick={() => handleMyIconClick("/my")}>
+              <PersonIcon />
+            </button>
+          )}
+        </nav>
 
-      {items && <MenuListLayoutProps items={items} open={open} />}
-      {existHeight && <div className="h-[5.6rem] w-full"></div>}
-    </div>
+        {items && <MenuListLayoutProps items={items} open={open} />}
+        {existHeight && <div className="h-[5.6rem] w-full" />}
+      </div>
+
+      <Modal open={openAuthModal} onClose={() => setOpenAuthModal(false)} />
+    </>
   );
 }
 

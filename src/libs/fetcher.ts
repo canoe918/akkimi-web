@@ -1,4 +1,4 @@
-import { ApiError } from "./exception";
+import { ApiException } from "./exception";
 
 export async function fetcher(input: RequestInfo | URL, init?: RequestInit) {
   try {
@@ -8,7 +8,7 @@ export async function fetcher(input: RequestInfo | URL, init?: RequestInit) {
 
     return jsonResponse;
   } catch (error) {
-    throw new ApiError({
+    throw new ApiException({
       message: (error as Error).message,
       error,
     });
