@@ -32,7 +32,9 @@ export default function Modal({ open, onClose }: ModalProps) {
   };
 
   const handleKakaoLoginClick = async () => {
-    loginWithKakao("http://localhost:3000");
+    loginWithKakao(
+      process.env.NEXT_PUBLIC_BASE_URL ?? "https://akkimi-web.vercel.app",
+    );
   };
 
   return createPortal(
