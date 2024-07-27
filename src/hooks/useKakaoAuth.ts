@@ -1,3 +1,5 @@
+"use client";
+
 import {
   COOKIE_KEY_ACCESS_TOKEN,
   COOKIE_KEY_REFRESH_TOKEN,

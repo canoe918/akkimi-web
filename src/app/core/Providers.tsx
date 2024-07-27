@@ -9,6 +9,7 @@ import {
   createContext,
   PropsWithChildren,
   RefObject,
+  Suspense,
   useEffect,
   useRef,
 } from "react";
@@ -31,13 +32,15 @@ export function AuthProvider({ children }: PropsWithChildren) {
 export function AppProvider({ children }: PropsWithChildren) {
   return (
     <ErrorBoundary fallback={<div />}>
-      <QueryClientProvider client={queryClient}>
-        {NODE_ENV === "development" && (
-          <ReactQueryDevtools initialIsOpen={false} />
-        )}
+      <Suspense fallback={<div />}>
+        <QueryClientProvider client={queryClient}>
+          {NODE_ENV === "development" && (
+            <ReactQueryDevtools initialIsOpen={false} />
+          )}
 
-        <AuthProvider>{children}</AuthProvider>
-      </QueryClientProvider>
+          <AuthProvider>{children}</AuthProvider>
+        </QueryClientProvider>
+      </Suspense>
     </ErrorBoundary>
   );
 }
