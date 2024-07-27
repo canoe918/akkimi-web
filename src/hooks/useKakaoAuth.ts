@@ -62,7 +62,7 @@ export const useKakaoAuth = () => {
         body: JSON.stringify({
           grant_type: "authorization_code",
           client_id: process.env.NEXT_PUBLIC_KAKAO_REST_AUTH_KEY,
-          redirect_uri: "http://localhost:3000",
+          redirect_uri: process.env.NEXT_PUBLIC_BASE_URL,
           code: isKakaoAuthRedirectedParams,
           client_secret: process.env.NEXT_PUBLIC_KAKAO_REST_SECRET_KEY,
         }),
