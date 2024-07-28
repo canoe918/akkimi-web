@@ -9,6 +9,194 @@ export type Json =
 export type Database = {
   public: {
     Tables: {
+      challenge_attachments: {
+        Row: {
+          challenge_attachment_type:
+            | Database["public"]["Enums"]["challenge_attachment_type"]
+            | null
+          challenge_id: number
+          created_at: string
+          deleted_at: string | null
+          display_order: number
+          file_id: string | null
+          id: number
+          updated_at: string | null
+        }
+        Insert: {
+          challenge_attachment_type?:
+            | Database["public"]["Enums"]["challenge_attachment_type"]
+            | null
+          challenge_id: number
+          created_at?: string
+          deleted_at?: string | null
+          display_order?: number
+          file_id?: string | null
+          id?: number
+          updated_at?: string | null
+        }
+        Update: {
+          challenge_attachment_type?:
+            | Database["public"]["Enums"]["challenge_attachment_type"]
+            | null
+          challenge_id?: number
+          created_at?: string
+          deleted_at?: string | null
+          display_order?: number
+          file_id?: string | null
+          id?: number
+          updated_at?: string | null
+        }
+        Relationships: [
+          {
+            foreignKeyName: "challenge_attachments_challenge_id_fkey"
+            columns: ["challenge_id"]
+            isOneToOne: false
+            referencedRelation: "challenges"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "challenge_attachments_file_id_fkey"
+            columns: ["file_id"]
+            isOneToOne: false
+            referencedRelation: "objects"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      challenge_categories: {
+        Row: {
+          created_at: string
+          id: number
+          name: string
+          updated_at: string | null
+        }
+        Insert: {
+          created_at?: string
+          id?: number
+          name: string
+          updated_at?: string | null
+        }
+        Update: {
+          created_at?: string
+          id?: number
+          name?: string
+          updated_at?: string | null
+        }
+        Relationships: []
+      }
+      challenge_members: {
+        Row: {
+          challenge_id: number
+          created_at: string
+          deleted_at: string | null
+          expired_at: string | null
+          id: number
+          status: Database["public"]["Enums"]["challenge_member_status"] | null
+          updated_at: string | null
+          user_id: string | null
+        }
+        Insert: {
+          challenge_id: number
+          created_at?: string
+          deleted_at?: string | null
+          expired_at?: string | null
+          id?: number
+          status?: Database["public"]["Enums"]["challenge_member_status"] | null
+          updated_at?: string | null
+          user_id?: string | null
+        }
+        Update: {
+          challenge_id?: number
+          created_at?: string
+          deleted_at?: string | null
+          expired_at?: string | null
+          id?: number
+          status?: Database["public"]["Enums"]["challenge_member_status"] | null
+          updated_at?: string | null
+          user_id?: string | null
+        }
+        Relationships: [
+          {
+            foreignKeyName: "challenge_members_challenge_id_fkey"
+            columns: ["challenge_id"]
+            isOneToOne: false
+            referencedRelation: "challenges"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "challenge_members_user_id_fkey"
+            columns: ["user_id"]
+            isOneToOne: false
+            referencedRelation: "users"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      challenges: {
+        Row: {
+          challenge_category_id: number
+          challenge_period_type: Database["public"]["Enums"]["challenge_period_type"]
+          created_at: string
+          deleted_at: string | null
+          description: string | null
+          entry_fee: number
+          expired_at: string | null
+          how_to_join: string | null
+          id: number
+          is_holiday_included: boolean
+          join_limit: number
+          maximum_reward_point: number | null
+          minimum_reward_point: number
+          status: Database["public"]["Enums"]["challenge_status"] | null
+          title: string
+          updated_at: string | null
+        }
+        Insert: {
+          challenge_category_id: number
+          challenge_period_type?: Database["public"]["Enums"]["challenge_period_type"]
+          created_at?: string
+          deleted_at?: string | null
+          description?: string | null
+          entry_fee?: number
+          expired_at?: string | null
+          how_to_join?: string | null
+          id?: number
+          is_holiday_included?: boolean
+          join_limit?: number
+          maximum_reward_point?: number | null
+          minimum_reward_point?: number
+          status?: Database["public"]["Enums"]["challenge_status"] | null
+          title: string
+          updated_at?: string | null
+        }
+        Update: {
+          challenge_category_id?: number
+          challenge_period_type?: Database["public"]["Enums"]["challenge_period_type"]
+          created_at?: string
+          deleted_at?: string | null
+          description?: string | null
+          entry_fee?: number
+          expired_at?: string | null
+          how_to_join?: string | null
+          id?: number
+          is_holiday_included?: boolean
+          join_limit?: number
+          maximum_reward_point?: number | null
+          minimum_reward_point?: number
+          status?: Database["public"]["Enums"]["challenge_status"] | null
+          title?: string
+          updated_at?: string | null
+        }
+        Relationships: [
+          {
+            foreignKeyName: "challenges_challenge_category_id_fkey"
+            columns: ["challenge_category_id"]
+            isOneToOne: false
+            referencedRelation: "challenge_categories"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
       channels: {
         Row: {
           created_at: string
@@ -37,6 +225,99 @@ export type Database = {
             referencedColumns: ["id"]
           },
         ]
+      }
+      discount_needs: {
+        Row: {
+          created_at: string
+          description: string | null
+          id: number
+          is_visible: boolean | null
+          necessity_level: number | null
+          saving_category_id: number | null
+          title: string | null
+          updated_at: string | null
+          user_id: string | null
+        }
+        Insert: {
+          created_at?: string
+          description?: string | null
+          id?: number
+          is_visible?: boolean | null
+          necessity_level?: number | null
+          saving_category_id?: number | null
+          title?: string | null
+          updated_at?: string | null
+          user_id?: string | null
+        }
+        Update: {
+          created_at?: string
+          description?: string | null
+          id?: number
+          is_visible?: boolean | null
+          necessity_level?: number | null
+          saving_category_id?: number | null
+          title?: string | null
+          updated_at?: string | null
+          user_id?: string | null
+        }
+        Relationships: []
+      }
+      discount_needs_images: {
+        Row: {
+          created_at: string
+          deleted_at: string | null
+          discount_needs_id: number
+          display_order: number | null
+          id: number
+          image_url: string
+          is_deleted: boolean | null
+          updated_at: string | null
+        }
+        Insert: {
+          created_at?: string
+          deleted_at?: string | null
+          discount_needs_id: number
+          display_order?: number | null
+          id?: number
+          image_url: string
+          is_deleted?: boolean | null
+          updated_at?: string | null
+        }
+        Update: {
+          created_at?: string
+          deleted_at?: string | null
+          discount_needs_id?: number
+          display_order?: number | null
+          id?: number
+          image_url?: string
+          is_deleted?: boolean | null
+          updated_at?: string | null
+        }
+        Relationships: []
+      }
+      discount_needs_like_history: {
+        Row: {
+          created_at: string
+          discount_needs_id: number | null
+          id: number
+          is_like: boolean | null
+          user_id: string | null
+        }
+        Insert: {
+          created_at?: string
+          discount_needs_id?: number | null
+          id?: number
+          is_like?: boolean | null
+          user_id?: string | null
+        }
+        Update: {
+          created_at?: string
+          discount_needs_id?: number | null
+          id?: number
+          is_like?: boolean | null
+          user_id?: string | null
+        }
+        Relationships: []
       }
       messages: {
         Row: {
@@ -146,47 +427,140 @@ export type Database = {
         }
         Relationships: []
       }
-      role_permissions: {
+      point_codes: {
         Row: {
-          id: number
-          permission: Database["public"]["Enums"]["app_permission"]
-          role: Database["public"]["Enums"]["app_role"]
+          code: string
+          created_at: string
+          english_name: string | null
+          expiration_date: string | null
+          expiration_period: number | null
+          expiration_period_type:
+            | Database["public"]["Enums"]["point_expiration_period_type"]
+            | null
+          is_auto_issue: boolean
+          is_enable: boolean
+          name: string | null
+          point_type: Database["public"]["Enums"]["point_type"]
+          updated_at: string | null
         }
         Insert: {
-          id?: number
-          permission: Database["public"]["Enums"]["app_permission"]
-          role: Database["public"]["Enums"]["app_role"]
+          code: string
+          created_at?: string
+          english_name?: string | null
+          expiration_date?: string | null
+          expiration_period?: number | null
+          expiration_period_type?:
+            | Database["public"]["Enums"]["point_expiration_period_type"]
+            | null
+          is_auto_issue?: boolean
+          is_enable?: boolean
+          name?: string | null
+          point_type: Database["public"]["Enums"]["point_type"]
+          updated_at?: string | null
         }
         Update: {
-          id?: number
-          permission?: Database["public"]["Enums"]["app_permission"]
-          role?: Database["public"]["Enums"]["app_role"]
+          code?: string
+          created_at?: string
+          english_name?: string | null
+          expiration_date?: string | null
+          expiration_period?: number | null
+          expiration_period_type?:
+            | Database["public"]["Enums"]["point_expiration_period_type"]
+            | null
+          is_auto_issue?: boolean
+          is_enable?: boolean
+          name?: string | null
+          point_type?: Database["public"]["Enums"]["point_type"]
+          updated_at?: string | null
         }
         Relationships: []
+      }
+      point_wallets: {
+        Row: {
+          available_balance: number | null
+          balance: number | null
+          created_at: string
+          id: number
+          is_enable: boolean | null
+          point_code: string
+          point_wallet_status:
+            | Database["public"]["Enums"]["point_wallet_status"]
+            | null
+          point_wallet_type:
+            | Database["public"]["Enums"]["point_wallet_type"]
+            | null
+          updated_at: string | null
+          user_id: string
+        }
+        Insert: {
+          available_balance?: number | null
+          balance?: number | null
+          created_at?: string
+          id: number
+          is_enable?: boolean | null
+          point_code: string
+          point_wallet_status?:
+            | Database["public"]["Enums"]["point_wallet_status"]
+            | null
+          point_wallet_type?:
+            | Database["public"]["Enums"]["point_wallet_type"]
+            | null
+          updated_at?: string | null
+          user_id: string
+        }
+        Update: {
+          available_balance?: number | null
+          balance?: number | null
+          created_at?: string
+          id?: number
+          is_enable?: boolean | null
+          point_code?: string
+          point_wallet_status?:
+            | Database["public"]["Enums"]["point_wallet_status"]
+            | null
+          point_wallet_type?:
+            | Database["public"]["Enums"]["point_wallet_type"]
+            | null
+          updated_at?: string | null
+          user_id?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "point_wallet\bs_point_code_fkey"
+            columns: ["point_code"]
+            isOneToOne: false
+            referencedRelation: "point_codes"
+            referencedColumns: ["code"]
+          },
+          {
+            foreignKeyName: "point_wallet\bs_user_id_fkey"
+            columns: ["user_id"]
+            isOneToOne: false
+            referencedRelation: "users"
+            referencedColumns: ["id"]
+          },
+        ]
       }
       saving_categories: {
         Row: {
           created_at: string
-          default_price: number
           id: number
           name: string
-          tip: string | null
+          saving_price: number
           updated_at: string | null
         }
         Insert: {
           created_at?: string
-          default_price: number
           id?: number
           name?: string
-          tip?: string | null
+          saving_price: number
           updated_at?: string | null
         }
         Update: {
           created_at?: string
-          default_price?: number
           id?: number
           name?: string
-          tip?: string | null
+          saving_price?: number
           updated_at?: string | null
         }
         Relationships: []
@@ -198,7 +572,7 @@ export type Database = {
           deleted_at: string | null
           id: number
           is_deleted: boolean | null
-          price: number | null
+          saving_price: number | null
           updated_at: string | null
         }
         Insert: {
@@ -207,7 +581,7 @@ export type Database = {
           deleted_at?: string | null
           id?: number
           is_deleted?: boolean | null
-          price?: number | null
+          saving_price?: number | null
           updated_at?: string | null
         }
         Update: {
@@ -216,7 +590,7 @@ export type Database = {
           deleted_at?: string | null
           id?: number
           is_deleted?: boolean | null
-          price?: number | null
+          saving_price?: number | null
           updated_at?: string | null
         }
         Relationships: []
@@ -229,7 +603,7 @@ export type Database = {
           id: number
           is_deleted: boolean | null
           is_shared: boolean | null
-          saved_price: number | null
+          saving_price: number | null
           updated_at: string | null
           user_saving_category_id: number | null
         }
@@ -240,7 +614,7 @@ export type Database = {
           id?: number
           is_deleted?: boolean | null
           is_shared?: boolean | null
-          saved_price?: number | null
+          saving_price?: number | null
           updated_at?: string | null
           user_saving_category_id?: number | null
         }
@@ -251,7 +625,7 @@ export type Database = {
           id?: number
           is_deleted?: boolean | null
           is_shared?: boolean | null
-          saved_price?: number | null
+          saving_price?: number | null
           updated_at?: string | null
           user_saving_category_id?: number | null
         }
@@ -266,6 +640,7 @@ export type Database = {
           updated_at: string | null
           user_id: number | null
           user_saving_category_id: number | null
+          year_month: string | null
         }
         Insert: {
           created_at?: string
@@ -275,6 +650,7 @@ export type Database = {
           updated_at?: string | null
           user_id?: number | null
           user_saving_category_id?: number | null
+          year_month?: string | null
         }
         Update: {
           created_at?: string
@@ -284,39 +660,67 @@ export type Database = {
           updated_at?: string | null
           user_id?: number | null
           user_saving_category_id?: number | null
+          year_month?: string | null
         }
         Relationships: []
       }
       saving_statistics_by_age: {
         Row: {
           age_range: string | null
-          avg_price_day: number | null
-          avg_price_month: number | null
-          avg_price_week: number | null
           created_at: string
+          gender: string | null
           id: number
           saving_category_id: number | null
+          saving_price_per_month: number | null
           updated_at: string | null
         }
         Insert: {
           age_range?: string | null
-          avg_price_day?: number | null
-          avg_price_month?: number | null
-          avg_price_week?: number | null
           created_at?: string
+          gender?: string | null
           id?: number
           saving_category_id?: number | null
+          saving_price_per_month?: number | null
           updated_at?: string | null
         }
         Update: {
           age_range?: string | null
-          avg_price_day?: number | null
-          avg_price_month?: number | null
-          avg_price_week?: number | null
           created_at?: string
+          gender?: string | null
           id?: number
           saving_category_id?: number | null
+          saving_price_per_month?: number | null
           updated_at?: string | null
+        }
+        Relationships: []
+      }
+      saving_statistics_by_user: {
+        Row: {
+          created_at: string
+          date: string | null
+          id: number
+          saving_category_id: number | null
+          saving_price_per_month: number | null
+          updated_at: string | null
+          user_id: string | null
+        }
+        Insert: {
+          created_at?: string
+          date?: string | null
+          id?: number
+          saving_category_id?: number | null
+          saving_price_per_month?: number | null
+          updated_at?: string | null
+          user_id?: string | null
+        }
+        Update: {
+          created_at?: string
+          date?: string | null
+          id?: number
+          saving_category_id?: number | null
+          saving_price_per_month?: number | null
+          updated_at?: string | null
+          user_id?: string | null
         }
         Relationships: []
       }
@@ -432,7 +836,7 @@ export type Database = {
       user_notifications: {
         Row: {
           created_at: string
-          id: string
+          id: number
           is_read: boolean
           landing_url: string | null
           message: string
@@ -442,7 +846,7 @@ export type Database = {
         }
         Insert: {
           created_at?: string
-          id?: string
+          id: number
           is_read?: boolean
           landing_url?: string | null
           message: string
@@ -452,7 +856,7 @@ export type Database = {
         }
         Update: {
           created_at?: string
-          id?: string
+          id?: number
           is_read?: boolean
           landing_url?: string | null
           message?: string
@@ -470,32 +874,6 @@ export type Database = {
           },
         ]
       }
-      user_roles: {
-        Row: {
-          id: number
-          role: Database["public"]["Enums"]["app_role"]
-          user_id: string
-        }
-        Insert: {
-          id?: number
-          role: Database["public"]["Enums"]["app_role"]
-          user_id: string
-        }
-        Update: {
-          id?: number
-          role?: Database["public"]["Enums"]["app_role"]
-          user_id?: string
-        }
-        Relationships: [
-          {
-            foreignKeyName: "user_roles_user_id_fkey"
-            columns: ["user_id"]
-            isOneToOne: false
-            referencedRelation: "users"
-            referencedColumns: ["id"]
-          },
-        ]
-      }
       user_saving_categories: {
         Row: {
           created_at: string
@@ -503,8 +881,8 @@ export type Database = {
           id: number
           is_deleted: boolean | null
           name: string | null
-          price: number | null
           saving_category_id: number | null
+          saving_price: number | null
           updated_at: string | null
           user_id: number
         }
@@ -514,8 +892,8 @@ export type Database = {
           id?: number
           is_deleted?: boolean | null
           name?: string | null
-          price?: number | null
           saving_category_id?: number | null
+          saving_price?: number | null
           updated_at?: string | null
           user_id: number
         }
@@ -525,8 +903,8 @@ export type Database = {
           id?: number
           is_deleted?: boolean | null
           name?: string | null
-          price?: number | null
           saving_category_id?: number | null
+          saving_price?: number | null
           updated_at?: string | null
           user_id?: number
         }
@@ -534,36 +912,43 @@ export type Database = {
       }
       users: {
         Row: {
-          avatar_url: string | null
+          avatar_file_id: string | null
           created_at: string
           email: string | null
           full_name: string | null
           id: string
-          status: Database["public"]["Enums"]["user_status"] | null
+          user_status: Database["public"]["Enums"]["user_status"] | null
           username: string | null
           website: string | null
         }
         Insert: {
-          avatar_url?: string | null
+          avatar_file_id?: string | null
           created_at?: string
           email?: string | null
           full_name?: string | null
           id: string
-          status?: Database["public"]["Enums"]["user_status"] | null
+          user_status?: Database["public"]["Enums"]["user_status"] | null
           username?: string | null
           website?: string | null
         }
         Update: {
-          avatar_url?: string | null
+          avatar_file_id?: string | null
           created_at?: string
           email?: string | null
           full_name?: string | null
           id?: string
-          status?: Database["public"]["Enums"]["user_status"] | null
+          user_status?: Database["public"]["Enums"]["user_status"] | null
           username?: string | null
           website?: string | null
         }
         Relationships: [
+          {
+            foreignKeyName: "users_avatar_file_id_fkey"
+            columns: ["avatar_file_id"]
+            isOneToOne: false
+            referencedRelation: "objects"
+            referencedColumns: ["id"]
+          },
           {
             foreignKeyName: "users_id_fkey"
             columns: ["id"]
@@ -573,33 +958,87 @@ export type Database = {
           },
         ]
       }
+      wishlist_categories: {
+        Row: {
+          category_id: number | null
+          created_at: string
+          depth: number | null
+          id: number
+          like_count: number | null
+          name: string | null
+          updated_at: string | null
+        }
+        Insert: {
+          category_id?: number | null
+          created_at?: string
+          depth?: number | null
+          id?: number
+          like_count?: number | null
+          name?: string | null
+          updated_at?: string | null
+        }
+        Update: {
+          category_id?: number | null
+          created_at?: string
+          depth?: number | null
+          id?: number
+          like_count?: number | null
+          name?: string | null
+          updated_at?: string | null
+        }
+        Relationships: []
+      }
+      wishlist_other_categories: {
+        Row: {
+          created_at: string
+          id: number
+          like_count: number | null
+          name: string | null
+          user_id: string | null
+        }
+        Insert: {
+          created_at?: string
+          id?: number
+          like_count?: number | null
+          name?: string | null
+          user_id?: string | null
+        }
+        Update: {
+          created_at?: string
+          id?: number
+          like_count?: number | null
+          name?: string | null
+          user_id?: string | null
+        }
+        Relationships: []
+      }
     }
     Views: {
       [_ in never]: never
     }
     Functions: {
-      authorize: {
-        Args: {
-          requested_permission: Database["public"]["Enums"]["app_permission"]
-        }
-        Returns: boolean
-      }
       create_user: {
         Args: {
           email: string
         }
         Returns: string
       }
-      custom_access_token_hook: {
-        Args: {
-          event: Json
-        }
-        Returns: Json
-      }
     }
     Enums: {
       app_permission: "channels.delete" | "messages.delete"
-      app_role: "admin" | "moderator"
+      app_role: "ADMIN" | "MODERATOR"
+      challenge_attachment_type:
+        | "USER_PROOF"
+        | "PROVE_EXAMPLE"
+        | "INCORRECT_PROVE_EXAMPLE"
+      challenge_member_status:
+        | "ACTIVATED"
+        | "RE_ACTIVATED"
+        | "SUCCEED"
+        | "FAILED"
+        | "INACTIVATED"
+      challenge_period_type: "DAY" | "WEEK" | "MONTH"
+      challenge_status: "DRAFT" | "PUBLISHED" | "SUSPENDED" | "DELETED"
       device_type: "IOS" | "ANDROID" | "WEB" | "UNKNOWN"
       notification_event:
         | "POST_PUBLISHED"
@@ -608,6 +1047,10 @@ export type Database = {
         | "USER_HAS_NEW_FOLLOWER"
         | "MENTIONED_IN_POST"
         | "MENTIONED_IN_COMMENT"
+      point_expiration_period_type: "YEAR" | "MONTH" | "DAY" | "DATE"
+      point_type: "PAY" | "SETTLE" | "MARKETING" | "REWARD"
+      point_wallet_status: "NORMAL"
+      point_wallet_type: "CHALLENGE"
       user_status: "ONLINE" | "OFFLINE"
     }
     CompositeTypes: {
