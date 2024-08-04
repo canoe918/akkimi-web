@@ -391,39 +391,81 @@ export type Database = {
       notification_events: {
         Row: {
           created_at: string
-          email_sent: boolean | null
-          event_type: Database["public"]["Enums"]["notification_event"] | null
+          deleted_at: string | null
           id: number
-          instagram_sent: boolean | null
-          push_sent: boolean | null
-          slack_sent: boolean | null
-          sms_sent: boolean | null
+          notification_template_id: number
+          update_reason: string | null
           updated_at: string | null
-          whatsapp_sent: boolean | null
+          user_id: string
         }
         Insert: {
           created_at?: string
-          email_sent?: boolean | null
-          event_type?: Database["public"]["Enums"]["notification_event"] | null
+          deleted_at?: string | null
           id?: number
-          instagram_sent?: boolean | null
-          push_sent?: boolean | null
-          slack_sent?: boolean | null
-          sms_sent?: boolean | null
+          notification_template_id: number
+          update_reason?: string | null
           updated_at?: string | null
-          whatsapp_sent?: boolean | null
+          user_id: string
         }
         Update: {
           created_at?: string
-          email_sent?: boolean | null
-          event_type?: Database["public"]["Enums"]["notification_event"] | null
+          deleted_at?: string | null
           id?: number
-          instagram_sent?: boolean | null
-          push_sent?: boolean | null
-          slack_sent?: boolean | null
-          sms_sent?: boolean | null
+          notification_template_id?: number
+          update_reason?: string | null
           updated_at?: string | null
-          whatsapp_sent?: boolean | null
+          user_id?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "notification_events_notification_template_id_fkey"
+            columns: ["notification_template_id"]
+            isOneToOne: false
+            referencedRelation: "notification_templates"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "notification_events_user_id_fkey"
+            columns: ["user_id"]
+            isOneToOne: false
+            referencedRelation: "users"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      notification_templates: {
+        Row: {
+          body: string | null
+          created_at: string
+          id: number
+          is_email_send: boolean
+          is_push_send: boolean
+          is_sms_send: boolean
+          template_name: string
+          title: string | null
+          updated_at: string | null
+        }
+        Insert: {
+          body?: string | null
+          created_at?: string
+          id?: number
+          is_email_send?: boolean
+          is_push_send?: boolean
+          is_sms_send?: boolean
+          template_name: string
+          title?: string | null
+          updated_at?: string | null
+        }
+        Update: {
+          body?: string | null
+          created_at?: string
+          id?: number
+          is_email_send?: boolean
+          is_push_send?: boolean
+          is_sms_send?: boolean
+          template_name?: string
+          title?: string | null
+          updated_at?: string | null
         }
         Relationships: []
       }
@@ -486,9 +528,7 @@ export type Database = {
           point_wallet_status:
             | Database["public"]["Enums"]["point_wallet_status"]
             | null
-          point_wallet_type:
-            | Database["public"]["Enums"]["point_wallet_type"]
-            | null
+          point_wallet_type: Database["public"]["Enums"]["point_wallet_type"]
           updated_at: string | null
           user_id: string
         }
@@ -502,9 +542,7 @@ export type Database = {
           point_wallet_status?:
             | Database["public"]["Enums"]["point_wallet_status"]
             | null
-          point_wallet_type?:
-            | Database["public"]["Enums"]["point_wallet_type"]
-            | null
+          point_wallet_type: Database["public"]["Enums"]["point_wallet_type"]
           updated_at?: string | null
           user_id: string
         }
@@ -518,9 +556,7 @@ export type Database = {
           point_wallet_status?:
             | Database["public"]["Enums"]["point_wallet_status"]
             | null
-          point_wallet_type?:
-            | Database["public"]["Enums"]["point_wallet_type"]
-            | null
+          point_wallet_type?: Database["public"]["Enums"]["point_wallet_type"]
           updated_at?: string | null
           user_id?: string
         }
@@ -799,7 +835,6 @@ export type Database = {
           is_enabled: boolean
           nofitication_category: string | null
           notification_channel: string
-          notification_event: Database["public"]["Enums"]["notification_event"]
           updated_at: string | null
           user_id: string
         }
@@ -809,7 +844,6 @@ export type Database = {
           is_enabled?: boolean
           nofitication_category?: string | null
           notification_channel: string
-          notification_event: Database["public"]["Enums"]["notification_event"]
           updated_at?: string | null
           user_id: string
         }
@@ -819,7 +853,6 @@ export type Database = {
           is_enabled?: boolean
           nofitication_category?: string | null
           notification_channel?: string
-          notification_event?: Database["public"]["Enums"]["notification_event"]
           updated_at?: string | null
           user_id?: string
         }
@@ -960,30 +993,30 @@ export type Database = {
       }
       wishlist_categories: {
         Row: {
-          category_id: number | null
           created_at: string
           depth: number | null
           id: number
           like_count: number | null
           name: string | null
+          parent_category_id: number | null
           updated_at: string | null
         }
         Insert: {
-          category_id?: number | null
           created_at?: string
           depth?: number | null
           id?: number
           like_count?: number | null
           name?: string | null
+          parent_category_id?: number | null
           updated_at?: string | null
         }
         Update: {
-          category_id?: number | null
           created_at?: string
           depth?: number | null
           id?: number
           like_count?: number | null
           name?: string | null
+          parent_category_id?: number | null
           updated_at?: string | null
         }
         Relationships: []
@@ -1040,14 +1073,13 @@ export type Database = {
       challenge_period_type: "DAY" | "WEEK" | "MONTH"
       challenge_status: "DRAFT" | "PUBLISHED" | "SUSPENDED" | "DELETED"
       device_type: "IOS" | "ANDROID" | "WEB" | "UNKNOWN"
-      notification_event:
-        | "POST_PUBLISHED"
-        | "COMMENT_PUBLISHED"
-        | "USER_LONG_TERM_INACTIVE"
-        | "USER_HAS_NEW_FOLLOWER"
-        | "MENTIONED_IN_POST"
-        | "MENTIONED_IN_COMMENT"
-      point_expiration_period_type: "YEAR" | "MONTH" | "DAY" | "DATE"
+      point_expiration_period_type: "YEAR" | "MONTH" | "DAY" | "DATE" | "WEEK"
+      point_issue_status:
+        | "REQUEST"
+        | "IN_PROGRESS"
+        | "SUCCESS"
+        | "FAILURE"
+        | "NOT_ENOUGH_POINT"
       point_type: "PAY" | "SETTLE" | "MARKETING" | "REWARD"
       point_wallet_status: "NORMAL"
       point_wallet_type: "CHALLENGE"

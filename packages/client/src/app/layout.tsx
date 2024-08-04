@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { ToastContainer } from "react-toastify";
 
 import {
   AppProvider,
@@ -6,6 +7,7 @@ import {
   PortalProvider,
 } from "@/app/core/Providers";
 
+import "react-toastify/dist/ReactToastify.css";
 import "./globals.css";
 
 export const metadata: Metadata = {
@@ -32,6 +34,8 @@ export default function RootLayout({
         <AppProvider>
           <PortalProvider>
             <MobileWebProvider>{children}</MobileWebProvider>
+
+            <ToastContainer position="bottom-center" />
           </PortalProvider>
         </AppProvider>
       </body>

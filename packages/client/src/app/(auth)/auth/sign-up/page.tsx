@@ -1,11 +1,18 @@
 "use client";
 
-import { PLACEHOLDER, VALIDATION_MESSAGE } from "@/libs/const/validation.const";
+import useSignUp from "@/apis/auth/useSignUp";
+import {
+  PLACEHOLDER,
+  TOAST_MESSAGE,
+  VALIDATION_MESSAGE,
+} from "@/libs/const/validation.const";
 import Button from "@/stories/common/Button/Button";
 import FormLabel from "@/stories/common/Form/FormLabel";
 import { Input } from "@/stories/common/Input/Input";
 import { zodResolver } from "@hookform/resolvers/zod";
+
 import { useForm } from "react-hook-form";
+import { toast } from "react-toastify";
 import { z } from "zod";
 
 const signUpEmailSchema = z.object({
@@ -19,19 +26,46 @@ const signUpEmailSchema = z.object({
 type SignUpEmailSchemaType = z.infer<typeof signUpEmailSchema>;
 
 export default function Page() {
+  const { mutate: signUpWithEmail } = useSignUp();
+
   const {
     register,
     handleSubmit,
+    setValue,
     formState: { errors },
   } = useForm<SignUpEmailSchemaType>({
     resolver: zodResolver(signUpEmailSchema),
   });
 
-  const onSubmit = (value: SignUpEmailSchemaType) => {
-    console.log("value : ", value);
+  const onSubmit = async ({
+    email,
+    password,
+    emailVerify,
+  }: SignUpEmailSchemaType) => {
+    if (!emailVerify) {
+      toast.error(TOAST_MESSAGE["이메일 인증이 필요합니다."]);
+      return;
+    }
+
+    signUpWithEmail(
+      {
+        email,
+        password,
+      },
+      {
+        onSuccess: () => {
+          toast.success(TOAST_MESSAGE["회원가입을 하였습니다."]);
+        },
+        onError: () => {
+          toast.error(TOAST_MESSAGE["회원가입에 실패하였습니다."]);
+        },
+      },
+    );
   };
 
-  const handleEmailVerifyClick = () => {};
+  const handleEmailVerifyClick = () => {
+    setValue("emailVerify", true);
+  };
 
   return (
     <div className="p-24 w-full min-h-[100vh] h-full flex flex-col justify-center items-center">
@@ -81,6 +115,7 @@ export default function Page() {
             <Input
               error={Boolean(errors.password?.message)}
               placeholder={PLACEHOLDER.비밀번호}
+              type="password"
               {...register("password")}
             />
           </FormLabel>
