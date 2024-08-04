@@ -1,20 +1,26 @@
 import { cn } from "@/libs/tailwindCSS/style";
-import { SelectHTMLAttributes } from "react";
+import { ForwardedRef, forwardRef, SelectHTMLAttributes } from "react";
 
 export interface SelectProps extends SelectHTMLAttributes<HTMLSelectElement> {
   label?: string;
   placeholder?: string;
+  error?: boolean;
   options: string[];
 }
 
-export function Select({
-  placeholder,
-  label,
-  disabled,
-  value,
-  options,
-  onChange,
-}: SelectProps) {
+export const Select = forwardRef(function Select(
+  {
+    placeholder,
+    label,
+    disabled,
+    value,
+    error,
+    options,
+    onChange,
+    ...props
+  }: SelectProps,
+  ref: ForwardedRef<HTMLSelectElement>,
+) {
   return (
     <div className="flex flex-col">
       {label && (
@@ -22,15 +28,18 @@ export function Select({
       )}
 
       <select
+        ref={ref}
         className={cn(
           "px-16 py-14 body2-r text-blue-gray-600 bg-blue-gray-50 rounded-lg",
           {
             "bg-blue-gray-200": disabled,
+            "bg-red-1 outline-red-6": error,
           },
         )}
         value={value}
         disabled={disabled}
         onChange={onChange}
+        {...props}
       >
         {placeholder && (
           <option disabled value="">
@@ -45,4 +54,4 @@ export function Select({
       </select>
     </div>
   );
-}
+});

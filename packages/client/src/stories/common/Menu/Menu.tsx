@@ -1,6 +1,5 @@
 "use client";
 
-import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
 
@@ -11,9 +10,10 @@ import ArrowBackIcon from "@/stories/assets/icons/svg/arrow_back.svg";
 import KeyboardArrowLeftIcon from "@/stories/assets/icons/svg/keyboard_arrow_left.svg";
 import MenuIcon from "@/stories/assets/icons/svg/menu.svg";
 import PersonIcon from "@/stories/assets/icons/svg/person.svg";
+import MenuEmailModal from "@/stories/pageComponent/Auth/MenuEmailModal";
 import { getCookie } from "cookies-next";
-import Divider from "../Divider/Divider";
-import Modal from "../Modal/Modal";
+import MenuLoginModal from "../../pageComponent/Auth/MenuLoginModal";
+import MenuListLayoutProps from "./MenuListLayout";
 
 type MenuItem = {
   key: string;
@@ -23,7 +23,7 @@ type MenuItem = {
   children?: { key: string; label: string }[];
 };
 
-interface MenuProps {
+export interface MenuProps {
   navClassName?: string;
   title?: {
     text: string;
@@ -34,10 +34,6 @@ interface MenuProps {
   showBackButton?: boolean;
   showMyButton?: boolean;
   existHeight?: boolean;
-}
-
-interface MenuListLayoutProps extends MenuProps {
-  open: boolean;
 }
 
 export default function Menu({
@@ -51,7 +47,8 @@ export default function Menu({
   const { push, back } = useRouter();
 
   const [open, setOpen] = useState(false);
-  const [openAuthModal, setOpenAuthModal] = useState(false);
+  const [openSnsAuthModal, setSnsOpenAuthModal] = useState(false);
+  const [openEmailAuthModal, setEmailOpenAuthModal] = useState(false);
 
   useScrollBlock({ isBlock: open });
 
@@ -70,7 +67,7 @@ export default function Menu({
   const handleMyIconClick = (href: string) => {
     const accessToken = getCookie(COOKIE_KEY_ACCESS_TOKEN);
     if (!accessToken) {
-      setOpenAuthModal(true);
+      setSnsOpenAuthModal(true);
     } else {
       push(href);
     }
@@ -127,49 +124,21 @@ export default function Menu({
         {existHeight && <div className="h-[5.6rem] w-full" />}
       </div>
 
-      <Modal open={openAuthModal} onClose={() => setOpenAuthModal(false)} />
+      <MenuLoginModal
+        open={openSnsAuthModal}
+        onClose={() => setSnsOpenAuthModal(false)}
+        onEmailLoginClick={() => {
+          setSnsOpenAuthModal(false);
+          setEmailOpenAuthModal(true);
+        }}
+      />
+
+      <MenuEmailModal
+        open={openEmailAuthModal}
+        onClose={() => setEmailOpenAuthModal(false)}
+        onSignUpAuthClick={() => push("/auth/sign-up")}
+        onResetPasswordClick={() => push("/auth/reset-password")}
+      />
     </>
-  );
-}
-
-function MenuListLayoutProps({ items, open }: MenuListLayoutProps) {
-  return (
-    <div
-      className={cn(
-        "fixed overflow-y-scroll z-[5] duration-500 transition-all max-w-[44rem] -translate-x-1/2 overflow-hidden top-[5.6rem] left-1/2 w-full h-full",
-        {
-          "visible opacity-100": open,
-          "invisible opacity-0": !open,
-        },
-      )}
-    >
-      <div
-        className={cn(
-          "absolute pt-24 overflow-y-scroll duration-300 z-[5] transition-all max-w-[44rem] -translate-x-1/2 top-0 bottom-0 left-1/2 w-full h-full bg-white",
-          {
-            "-translate-x-1/2 opacity-100 left-1/2": open,
-            "-translate-x-full opacity-100 left-0": !open,
-          },
-        )}
-      >
-        <ul className="flex flex-col gap-y-24 px-24">
-          {items?.map(({ key, icon, label, divide }) => {
-            return (
-              <li key={key}>
-                <Link
-                  href={key}
-                  className="flex gap-x-8 justify-start items-center"
-                >
-                  <span className="subhead3-m">{label}</span>
-                  {icon}
-                </Link>
-
-                {divide && <Divider className="mt-24" />}
-              </li>
-            );
-          })}
-        </ul>
-      </div>
-    </div>
   );
 }
