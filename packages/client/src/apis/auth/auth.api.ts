@@ -1,5 +1,6 @@
 import {
   SignInWithPasswordCredentials,
+  SignInWithPasswordlessCredentials,
   SignUpWithPasswordCredentials,
   SupabaseClient,
 } from "@supabase/supabase-js";
@@ -14,9 +15,12 @@ const AuthApi = (supabase: TypedSupabaseClient | SupabaseClient<Database>) => {
   const signIn = async (credentials: SignInWithPasswordCredentials) => {
     return await supabase.auth.signInWithPassword(credentials);
   };
-  // signInWithOtp: async (credentials: SignInWithPasswordlessCredentials) => {
-  //   return await supabase.auth.signInWithOtp(credentials);
-  // },
+
+  const signInWithOtp = async (
+    credentials: SignInWithPasswordlessCredentials,
+  ) => {
+    return await supabase.auth.signInWithOtp(credentials);
+  };
   // verifyOtp: async (params: VerifyOtpParams) => {
   //   return await supabase.auth.verifyOtp(params);
   // },
@@ -47,6 +51,7 @@ const AuthApi = (supabase: TypedSupabaseClient | SupabaseClient<Database>) => {
   return {
     signUp,
     signIn,
+    signInWithOtp,
   };
 };
 
