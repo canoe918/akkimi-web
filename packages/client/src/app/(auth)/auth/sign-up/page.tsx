@@ -181,129 +181,131 @@ export default function Page() {
   }, [passwordValue]);
 
   return (
-    <div className="overflow-auto p-24 w-full h-full flex flex-col justify-center items-center pt-[12rem] pb-80">
-      <div className="flex flex-col items-center justify-center w-full gap-y-8">
-        <h3 className="subhead3-b text-geekblue-6">성장지향 커뮤니티</h3>
-        <h2 className="heading5-b text-blue-gray-900">아끼미</h2>
-      </div>
+    <div className="w-full overflow-auto">
+      <div className="px-24 pt-[12rem] pb-80 w-full flex flex-col justify-center items-center">
+        <div className="flex flex-col items-center justify-center w-full gap-y-8">
+          <h3 className="subhead3-b text-geekblue-6">성장지향 커뮤니티</h3>
+          <h2 className="heading5-b text-blue-gray-900">아끼미</h2>
+        </div>
 
-      <div className="w-full mt-36">
-        <form
-          className="flex flex-col w-full gap-y-24"
-          onSubmit={handleSubmit(onSubmit)}
-        >
-          <FormLabel label="이메일" errorMessage={errors.email?.message}>
-            <div className="flex w-full gap-x-8">
+        <div className="w-full mt-36">
+          <form
+            className="flex flex-col w-full gap-y-24"
+            onSubmit={handleSubmit(onSubmit)}
+          >
+            <FormLabel label="이메일" errorMessage={errors.email?.message}>
+              <div className="flex w-full gap-x-8">
+                <Input
+                  className="w-full"
+                  error={Boolean(errors.email?.message)}
+                  placeholder={PLACEHOLDER.이메일}
+                  {...register("email")}
+                />
+
+                <Button
+                  className="min-w-max px-20"
+                  type="button"
+                  theme="primary"
+                  size="xl"
+                  loading={isSendOtpWithEmailLoading}
+                  onClick={handleEmailVerifyClick}
+                >
+                  코드전송
+                </Button>
+              </div>
+            </FormLabel>
+
+            <FormLabel
+              label="이메일 인증코드"
+              errorMessage={errors.emailVerify?.message}
+            >
+              <div className="flex w-full gap-x-8">
+                <Input
+                  className="w-full"
+                  error={Boolean(errors.emailVerify?.message)}
+                  placeholder={PLACEHOLDER["이메일 인증코드"]}
+                  {...register("emailVerifyCode")}
+                />
+
+                <Button
+                  className="min-w-max px-20"
+                  type="button"
+                  theme="primary"
+                  size="xl"
+                  onClick={handleEmailVerifyClick}
+                >
+                  인증
+                </Button>
+              </div>
+            </FormLabel>
+
+            <FormLabel label="비밀번호" errorMessage={errors.password?.message}>
               <Input
-                className="w-full"
-                error={Boolean(errors.email?.message)}
-                placeholder={PLACEHOLDER.이메일}
-                {...register("email")}
+                error={Boolean(errors.password?.message)}
+                placeholder={PLACEHOLDER.비밀번호}
+                type="password"
+                {...register("password")}
               />
 
-              <Button
-                className="min-w-max px-20"
-                type="button"
-                theme="primary"
-                size="xl"
-                loading={isSendOtpWithEmailLoading}
-                onClick={handleEmailVerifyClick}
-              >
-                코드전송
-              </Button>
-            </div>
-          </FormLabel>
+              <div className="mt-24 flex flex-col gap-y-12">
+                <CheckboxWithLabel status={passwordLengthStatus}>
+                  8자이상
+                </CheckboxWithLabel>
+                <CheckboxWithLabel status={passwordSchemaStatus}>
+                  영대문자, 영소문자, 특수문자 포함
+                </CheckboxWithLabel>
+              </div>
 
-          <FormLabel
-            label="이메일 인증코드"
-            errorMessage={errors.emailVerify?.message}
-          >
-            <div className="flex w-full gap-x-8">
-              <Input
-                className="w-full"
-                error={Boolean(errors.emailVerify?.message)}
-                placeholder={PLACEHOLDER["이메일 인증코드"]}
-                {...register("emailVerifyCode")}
-              />
+              <div className="mt-24 flex flex-col gap-y-12">
+                {RADIO_LIST.map(({ key: radioKey, href, title }) => {
+                  const key = radioKey as
+                    | "isUsageAgree"
+                    | "isPrivacyInfoAgree"
+                    | "isSensitiveInfoAgree"
+                    | "isOverAge";
 
-              <Button
-                className="min-w-max px-20"
-                type="button"
-                theme="primary"
-                size="xl"
-                onClick={handleEmailVerifyClick}
-              >
-                인증
-              </Button>
-            </div>
-          </FormLabel>
+                  return (
+                    <RadioWithLabel
+                      key={key}
+                      {...register(key)}
+                      checked={Boolean(watch(key))}
+                      onChange={(event) => {
+                        if (event.target.checked) {
+                          setValue(key, true);
+                        } else {
+                          setValue(key, false);
+                        }
+                      }}
+                    >
+                      {href.length > 0 ? (
+                        <Link
+                          className="justify-between items-center w-full flex"
+                          href={href}
+                          target="_blank"
+                        >
+                          {title}
+                          <KeyboardArrowRightIcon color="#000000" />
+                        </Link>
+                      ) : (
+                        title
+                      )}
+                    </RadioWithLabel>
+                  );
+                })}
+              </div>
+            </FormLabel>
 
-          <FormLabel label="비밀번호" errorMessage={errors.password?.message}>
-            <Input
-              error={Boolean(errors.password?.message)}
-              placeholder={PLACEHOLDER.비밀번호}
-              type="password"
-              {...register("password")}
-            />
-
-            <div className="mt-24 flex flex-col gap-y-12">
-              <CheckboxWithLabel status={passwordLengthStatus}>
-                8자이상
-              </CheckboxWithLabel>
-              <CheckboxWithLabel status={passwordSchemaStatus}>
-                영대문자, 영소문자, 특수문자 포함
-              </CheckboxWithLabel>
-            </div>
-
-            <div className="mt-24 flex flex-col gap-y-12">
-              {RADIO_LIST.map(({ key: radioKey, href, title }) => {
-                const key = radioKey as
-                  | "isUsageAgree"
-                  | "isPrivacyInfoAgree"
-                  | "isSensitiveInfoAgree"
-                  | "isOverAge";
-
-                return (
-                  <RadioWithLabel
-                    key={key}
-                    {...register(key)}
-                    checked={Boolean(watch(key))}
-                    onChange={(event) => {
-                      if (event.target.checked) {
-                        setValue(key, true);
-                      } else {
-                        setValue(key, false);
-                      }
-                    }}
-                  >
-                    {href.length > 0 ? (
-                      <Link
-                        className="justify-between items-center w-full flex"
-                        href={href}
-                        target="_blank"
-                      >
-                        {title}
-                        <KeyboardArrowRightIcon color="#000000" />
-                      </Link>
-                    ) : (
-                      title
-                    )}
-                  </RadioWithLabel>
-                );
-              })}
-            </div>
-          </FormLabel>
-
-          <Button
-            theme="primary"
-            size="xl"
-            type="submit"
-            className="w-full"
-            disabled={Object.keys(errors).length > 0}
-          >
-            가입하기
-          </Button>
-        </form>
+            <Button
+              theme="primary"
+              size="xl"
+              type="submit"
+              className="w-full"
+              disabled={Object.keys(errors).length > 0}
+            >
+              가입하기
+            </Button>
+          </form>
+        </div>
       </div>
     </div>
   );
