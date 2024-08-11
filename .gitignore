@@ -45,3 +45,6 @@ output
 
 # storybook
 storybook-static
+
+# turbo
+.turbo

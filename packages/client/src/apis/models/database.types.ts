@@ -9,6 +9,54 @@ export type Json =
 export type Database = {
   public: {
     Tables: {
+      challange_member_attendance: {
+        Row: {
+          challange_member_id: number | null
+          check_in_date: string
+          created_at: string
+          deleted_at: string | null
+          file_id: string | null
+          id: number
+          points_awarded: number
+          updated_at: string | null
+        }
+        Insert: {
+          challange_member_id?: number | null
+          check_in_date?: string
+          created_at?: string
+          deleted_at?: string | null
+          file_id?: string | null
+          id?: number
+          points_awarded?: number
+          updated_at?: string | null
+        }
+        Update: {
+          challange_member_id?: number | null
+          check_in_date?: string
+          created_at?: string
+          deleted_at?: string | null
+          file_id?: string | null
+          id?: number
+          points_awarded?: number
+          updated_at?: string | null
+        }
+        Relationships: [
+          {
+            foreignKeyName: "challange_member_attendance_challange_member_id_fkey"
+            columns: ["challange_member_id"]
+            isOneToOne: false
+            referencedRelation: "challenge_members"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "challange_member_attendance_file_id_fkey"
+            columns: ["file_id"]
+            isOneToOne: false
+            referencedRelation: "objects"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
       challenge_attachments: {
         Row: {
           challenge_attachment_type:
@@ -134,55 +182,64 @@ export type Database = {
       }
       challenges: {
         Row: {
+          attendance_point: number
           challenge_category_id: number
           challenge_period_type: Database["public"]["Enums"]["challenge_period_type"]
           created_at: string
           deleted_at: string | null
-          description: string | null
           entry_fee: number
           expired_at: string | null
-          how_to_join: string | null
+          how_to_check_in: string | null
           id: number
           is_holiday_included: boolean
-          join_limit: number
-          maximum_reward_point: number | null
-          minimum_reward_point: number
+          is_instant_photo_require: boolean
+          is_photo_reqiure: boolean
+          join_limit: number | null
+          living_tip: string | null
+          maximum_attendance_point: number | null
+          minimum_attendance_count: number
           status: Database["public"]["Enums"]["challenge_status"] | null
           title: string
           updated_at: string | null
         }
         Insert: {
+          attendance_point?: number
           challenge_category_id: number
           challenge_period_type?: Database["public"]["Enums"]["challenge_period_type"]
           created_at?: string
           deleted_at?: string | null
-          description?: string | null
           entry_fee?: number
           expired_at?: string | null
-          how_to_join?: string | null
+          how_to_check_in?: string | null
           id?: number
           is_holiday_included?: boolean
-          join_limit?: number
-          maximum_reward_point?: number | null
-          minimum_reward_point?: number
+          is_instant_photo_require?: boolean
+          is_photo_reqiure?: boolean
+          join_limit?: number | null
+          living_tip?: string | null
+          maximum_attendance_point?: number | null
+          minimum_attendance_count?: number
           status?: Database["public"]["Enums"]["challenge_status"] | null
           title: string
           updated_at?: string | null
         }
         Update: {
+          attendance_point?: number
           challenge_category_id?: number
           challenge_period_type?: Database["public"]["Enums"]["challenge_period_type"]
           created_at?: string
           deleted_at?: string | null
-          description?: string | null
           entry_fee?: number
           expired_at?: string | null
-          how_to_join?: string | null
+          how_to_check_in?: string | null
           id?: number
           is_holiday_included?: boolean
-          join_limit?: number
-          maximum_reward_point?: number | null
-          minimum_reward_point?: number
+          is_instant_photo_require?: boolean
+          is_photo_reqiure?: boolean
+          join_limit?: number | null
+          living_tip?: string | null
+          maximum_attendance_point?: number | null
+          minimum_attendance_count?: number
           status?: Database["public"]["Enums"]["challenge_status"] | null
           title?: string
           updated_at?: string | null
@@ -260,7 +317,22 @@ export type Database = {
           updated_at?: string | null
           user_id?: string | null
         }
-        Relationships: []
+        Relationships: [
+          {
+            foreignKeyName: "discount_needs_saving_category_id_fkey"
+            columns: ["saving_category_id"]
+            isOneToOne: false
+            referencedRelation: "saving_categories"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "discount_needs_user_id_fkey"
+            columns: ["user_id"]
+            isOneToOne: false
+            referencedRelation: "users"
+            referencedColumns: ["id"]
+          },
+        ]
       }
       discount_needs_images: {
         Row: {
@@ -293,7 +365,15 @@ export type Database = {
           is_deleted?: boolean | null
           updated_at?: string | null
         }
-        Relationships: []
+        Relationships: [
+          {
+            foreignKeyName: "discount_needs_images_discount_needs_id_fkey"
+            columns: ["discount_needs_id"]
+            isOneToOne: false
+            referencedRelation: "discount_needs"
+            referencedColumns: ["id"]
+          },
+        ]
       }
       discount_needs_like_history: {
         Row: {
@@ -317,7 +397,22 @@ export type Database = {
           is_like?: boolean | null
           user_id?: string | null
         }
-        Relationships: []
+        Relationships: [
+          {
+            foreignKeyName: "discount_needs_like_history_discount_needs_id_fkey"
+            columns: ["discount_needs_id"]
+            isOneToOne: false
+            referencedRelation: "discount_needs"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "discount_needs_like_history_user_id_fkey"
+            columns: ["user_id"]
+            isOneToOne: false
+            referencedRelation: "users"
+            referencedColumns: ["id"]
+          },
+        ]
       }
       messages: {
         Row: {
@@ -393,7 +488,7 @@ export type Database = {
           created_at: string
           deleted_at: string | null
           id: number
-          notification_template_id: number
+          notification_template_name: string
           update_reason: string | null
           updated_at: string | null
           user_id: string
@@ -402,7 +497,7 @@ export type Database = {
           created_at?: string
           deleted_at?: string | null
           id?: number
-          notification_template_id: number
+          notification_template_name: string
           update_reason?: string | null
           updated_at?: string | null
           user_id: string
@@ -411,18 +506,18 @@ export type Database = {
           created_at?: string
           deleted_at?: string | null
           id?: number
-          notification_template_id?: number
+          notification_template_name?: string
           update_reason?: string | null
           updated_at?: string | null
           user_id?: string
         }
         Relationships: [
           {
-            foreignKeyName: "notification_events_notification_template_id_fkey"
-            columns: ["notification_template_id"]
+            foreignKeyName: "notification_events_notification_template_name_fkey"
+            columns: ["notification_template_name"]
             isOneToOne: false
             referencedRelation: "notification_templates"
-            referencedColumns: ["id"]
+            referencedColumns: ["template_name"]
           },
           {
             foreignKeyName: "notification_events_user_id_fkey"
@@ -437,33 +532,45 @@ export type Database = {
         Row: {
           body: string | null
           created_at: string
-          id: number
           is_email_send: boolean
+          is_enabled: boolean
+          is_marketing: boolean
           is_push_send: boolean
           is_sms_send: boolean
+          landing_url: string | null
+          template_group: string | null
           template_name: string
+          template_sub_group: string | null
           title: string | null
           updated_at: string | null
         }
         Insert: {
           body?: string | null
           created_at?: string
-          id?: number
           is_email_send?: boolean
+          is_enabled?: boolean
+          is_marketing?: boolean
           is_push_send?: boolean
           is_sms_send?: boolean
+          landing_url?: string | null
+          template_group?: string | null
           template_name: string
+          template_sub_group?: string | null
           title?: string | null
           updated_at?: string | null
         }
         Update: {
           body?: string | null
           created_at?: string
-          id?: number
           is_email_send?: boolean
+          is_enabled?: boolean
+          is_marketing?: boolean
           is_push_send?: boolean
           is_sms_send?: boolean
+          landing_url?: string | null
+          template_group?: string | null
           template_name?: string
+          template_sub_group?: string | null
           title?: string | null
           updated_at?: string | null
         }
@@ -641,6 +748,7 @@ export type Database = {
           is_shared: boolean | null
           saving_price: number | null
           updated_at: string | null
+          user_id: string | null
           user_saving_category_id: number | null
         }
         Insert: {
@@ -652,6 +760,7 @@ export type Database = {
           is_shared?: boolean | null
           saving_price?: number | null
           updated_at?: string | null
+          user_id?: string | null
           user_saving_category_id?: number | null
         }
         Update: {
@@ -663,9 +772,25 @@ export type Database = {
           is_shared?: boolean | null
           saving_price?: number | null
           updated_at?: string | null
+          user_id?: string | null
           user_saving_category_id?: number | null
         }
-        Relationships: []
+        Relationships: [
+          {
+            foreignKeyName: "saving_records_user_id_fkey"
+            columns: ["user_id"]
+            isOneToOne: false
+            referencedRelation: "users"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "saving_records_user_saving_category_id_fkey"
+            columns: ["user_saving_category_id"]
+            isOneToOne: false
+            referencedRelation: "user_saving_categories"
+            referencedColumns: ["id"]
+          },
+        ]
       }
       saving_records_summary: {
         Row: {
@@ -945,7 +1070,7 @@ export type Database = {
       }
       users: {
         Row: {
-          avatar_file_id: string | null
+          avatar_url: string | null
           created_at: string
           email: string | null
           full_name: string | null
@@ -955,7 +1080,7 @@ export type Database = {
           website: string | null
         }
         Insert: {
-          avatar_file_id?: string | null
+          avatar_url?: string | null
           created_at?: string
           email?: string | null
           full_name?: string | null
@@ -965,7 +1090,7 @@ export type Database = {
           website?: string | null
         }
         Update: {
-          avatar_file_id?: string | null
+          avatar_url?: string | null
           created_at?: string
           email?: string | null
           full_name?: string | null
@@ -975,13 +1100,6 @@ export type Database = {
           website?: string | null
         }
         Relationships: [
-          {
-            foreignKeyName: "users_avatar_file_id_fkey"
-            columns: ["avatar_file_id"]
-            isOneToOne: false
-            referencedRelation: "objects"
-            referencedColumns: ["id"]
-          },
           {
             foreignKeyName: "users_id_fkey"
             columns: ["id"]
@@ -1050,36 +1168,22 @@ export type Database = {
       [_ in never]: never
     }
     Functions: {
-      create_user: {
-        Args: {
-          email: string
-        }
-        Returns: string
-      }
+      [_ in never]: never
     }
     Enums: {
       app_permission: "channels.delete" | "messages.delete"
       app_role: "ADMIN" | "MODERATOR"
-      challenge_attachment_type:
-        | "USER_PROOF"
-        | "PROVE_EXAMPLE"
-        | "INCORRECT_PROVE_EXAMPLE"
+      challenge_attachment_type: "GOOD_EXAMPLE" | "BAD_EXAMPLE"
       challenge_member_status:
         | "ACTIVATED"
         | "RE_ACTIVATED"
         | "SUCCEED"
         | "FAILED"
         | "INACTIVATED"
-      challenge_period_type: "DAY" | "WEEK" | "MONTH"
+      challenge_period_type: "DAY" | "WEEK" | "MONTH" | "NONE"
       challenge_status: "DRAFT" | "PUBLISHED" | "SUSPENDED" | "DELETED"
       device_type: "IOS" | "ANDROID" | "WEB" | "UNKNOWN"
       point_expiration_period_type: "YEAR" | "MONTH" | "DAY" | "DATE" | "WEEK"
-      point_issue_status:
-        | "REQUEST"
-        | "IN_PROGRESS"
-        | "SUCCESS"
-        | "FAILURE"
-        | "NOT_ENOUGH_POINT"
       point_type: "PAY" | "SETTLE" | "MARKETING" | "REWARD"
       point_wallet_status: "NORMAL"
       point_wallet_type: "CHALLENGE"

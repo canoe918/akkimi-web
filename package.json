@@ -3,6 +3,9 @@
   "version": "1.0.0",
   "description": "",
   "scripts": {
+    "turbo:dev": "turbo run dev",
+    "turbo:start": "turbo run start",
+    "turbo:build": "turbo run build",
     "preinstall": "npx only-allow pnpm",
     "dev": "pnpm -r run dev",
     "dev:client": "pnpm --filter client run dev",
@@ -12,6 +15,28 @@
     "build:server": "pnpm --filter server run build",
     "start:client": "pnpm --filter client run start",
     "start:server": "pnpm --filter server run start"
+  },
+  "devDependencies": {
+    "pnpm": "^9.6.0",
+    "turbo": "^2.0.12"
+  },
+  "packageManager": "pnpm@9.6.0",
+  "turbo": {
+    "npmClient": "pnpm",
+    "pipeline": {
+      "dev": {
+        "cache": false
+      },
+      "build": {
+        "dependsOn": [
+          "^build"
+        ],
+        "outputs": [
+          ".next/**",
+          "dist/**"
+        ]
+      }
+    }
   },
   "workspaces": [
     "packages/client",
