@@ -53,6 +53,7 @@ export default function Button({
         },
         className,
       )}
+      disabled={disabled}
       {...props}
     >
       {props.children}

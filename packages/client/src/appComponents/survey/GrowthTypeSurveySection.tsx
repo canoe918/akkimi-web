@@ -4,6 +4,8 @@ import GrowthTypeSurvey from "./GrowthTypeSurvey";
 import GrowthTypeSurveyResult from "./GrowthTypeSurveyResult";
 import ProgressBar from "./ProgressBar";
 
+const growthTypeData = [{}];
+
 export default function GrowthTypeSurveySection() {
   return (
     <>
