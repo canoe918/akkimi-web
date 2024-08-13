@@ -19,7 +19,7 @@ export default function SurveyCard() {
         성장유형 검사하고 내 유형에 맞는 강의 추천받기
       </p>
 
-      <Link href="/" className="mt-24 w-full">
+      <Link href="/survey" className="mt-24 w-full">
         <Button theme="primary" size="xl" className="min-w-full">
           검사하기
         </Button>

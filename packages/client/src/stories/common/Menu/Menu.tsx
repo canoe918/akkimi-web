@@ -25,6 +25,7 @@ type MenuItem = {
 
 export interface MenuProps {
   navClassName?: string;
+  theme?: "white" | "primary";
   title?: {
     text: string;
     center?: boolean;
@@ -38,6 +39,7 @@ export interface MenuProps {
 
 export default function Menu({
   navClassName,
+  theme = "primary",
   title,
   items,
   showBackButton,
@@ -87,25 +89,36 @@ export default function Menu({
               {items &&
                 (!open ? (
                   <button onClick={handleMenuClick}>
-                    <MenuIcon />
+                    <MenuIcon color={theme === "primary" ? "black" : "white"} />
                   </button>
                 ) : (
                   <button onClick={handleMenuClose}>
-                    <KeyboardArrowLeftIcon />
+                    <KeyboardArrowLeftIcon
+                      color={theme === "primary" ? "black" : "white"}
+                    />
                   </button>
                 ))}
               {showBackButton && (
                 <button onClick={handleBackClick}>
-                  <ArrowBackIcon />
+                  <ArrowBackIcon
+                    color={theme === "primary" ? "black" : "white"}
+                  />
                 </button>
               )}
 
               {title?.hide !== true && (
                 <div
-                  className={cn("subhead2-m", {
-                    "absolute top-1/2 -translate-y-1/2 -translate-x-1/2 left-1/2 min-w-max":
-                      title?.center,
-                  })}
+                  className={cn(
+                    "subhead2-m",
+                    {
+                      "absolute top-1/2 -translate-y-1/2 -translate-x-1/2 left-1/2 min-w-max":
+                        title?.center,
+                    },
+                    {
+                      "text-white": theme === "white",
+                      "text-blue-gray-900": theme === "primary",
+                    },
+                  )}
                 >
                   {title?.text}
                 </div>
@@ -115,7 +128,7 @@ export default function Menu({
 
           {showMyButton && (
             <button onClick={() => handleMyIconClick("/my")}>
-              <PersonIcon />
+              <PersonIcon color={theme === "primary" ? "black" : "white"} />
             </button>
           )}
         </nav>

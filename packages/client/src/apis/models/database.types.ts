@@ -375,12 +375,13 @@ export type Database = {
           },
         ]
       }
-      discount_needs_like_history: {
+      discount_needs_like: {
         Row: {
           created_at: string
           discount_needs_id: number | null
           id: number
           is_like: boolean | null
+          updated_at: string | null
           user_id: string | null
         }
         Insert: {
@@ -388,6 +389,7 @@ export type Database = {
           discount_needs_id?: number | null
           id?: number
           is_like?: boolean | null
+          updated_at?: string | null
           user_id?: string | null
         }
         Update: {
@@ -395,6 +397,7 @@ export type Database = {
           discount_needs_id?: number | null
           id?: number
           is_like?: boolean | null
+          updated_at?: string | null
           user_id?: string | null
         }
         Relationships: [
@@ -489,6 +492,7 @@ export type Database = {
           deleted_at: string | null
           id: number
           notification_template_name: string
+          push_result: Json | null
           update_reason: string | null
           updated_at: string | null
           user_id: string
@@ -498,6 +502,7 @@ export type Database = {
           deleted_at?: string | null
           id?: number
           notification_template_name: string
+          push_result?: Json | null
           update_reason?: string | null
           updated_at?: string | null
           user_id: string
@@ -507,6 +512,7 @@ export type Database = {
           deleted_at?: string | null
           id?: number
           notification_template_name?: string
+          push_result?: Json | null
           update_reason?: string | null
           updated_at?: string | null
           user_id?: string
@@ -1070,7 +1076,7 @@ export type Database = {
       }
       users: {
         Row: {
-          avatar_url: string | null
+          avatar_file_id: string | null
           created_at: string
           email: string | null
           full_name: string | null
@@ -1080,7 +1086,7 @@ export type Database = {
           website: string | null
         }
         Insert: {
-          avatar_url?: string | null
+          avatar_file_id?: string | null
           created_at?: string
           email?: string | null
           full_name?: string | null
@@ -1090,7 +1096,7 @@ export type Database = {
           website?: string | null
         }
         Update: {
-          avatar_url?: string | null
+          avatar_file_id?: string | null
           created_at?: string
           email?: string | null
           full_name?: string | null
@@ -1100,6 +1106,13 @@ export type Database = {
           website?: string | null
         }
         Relationships: [
+          {
+            foreignKeyName: "users_avatar_file_id_fkey"
+            columns: ["avatar_file_id"]
+            isOneToOne: false
+            referencedRelation: "objects"
+            referencedColumns: ["id"]
+          },
           {
             foreignKeyName: "users_id_fkey"
             columns: ["id"]
@@ -1112,6 +1125,7 @@ export type Database = {
       wishlist_categories: {
         Row: {
           created_at: string
+          created_by: string | null
           depth: number | null
           id: number
           like_count: number | null
@@ -1121,6 +1135,7 @@ export type Database = {
         }
         Insert: {
           created_at?: string
+          created_by?: string | null
           depth?: number | null
           id?: number
           like_count?: number | null
@@ -1130,6 +1145,7 @@ export type Database = {
         }
         Update: {
           created_at?: string
+          created_by?: string | null
           depth?: number | null
           id?: number
           like_count?: number | null
@@ -1139,27 +1155,30 @@ export type Database = {
         }
         Relationships: []
       }
-      wishlist_other_categories: {
+      wishlist_categories_like: {
         Row: {
           created_at: string
           id: number
-          like_count: number | null
-          name: string | null
+          is_like: boolean | null
+          updated_at: string | null
           user_id: string | null
+          wishlist_category_id: number | null
         }
         Insert: {
           created_at?: string
           id?: number
-          like_count?: number | null
-          name?: string | null
+          is_like?: boolean | null
+          updated_at?: string | null
           user_id?: string | null
+          wishlist_category_id?: number | null
         }
         Update: {
           created_at?: string
           id?: number
-          like_count?: number | null
-          name?: string | null
+          is_like?: boolean | null
+          updated_at?: string | null
           user_id?: string | null
+          wishlist_category_id?: number | null
         }
         Relationships: []
       }
